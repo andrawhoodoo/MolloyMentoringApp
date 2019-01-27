@@ -12,3 +12,14 @@ body {
 	background-size: cover;
 	height: 100vh;
 }
+
+
+
+/**********************/
+/*****Navbar***********/
+/**********************/
+
+#brand-name {
+	font-weight: bold;
+	font-size: 200%;
+}

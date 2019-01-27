@@ -18,10 +18,10 @@
 						<a href="home.html" class="nav-link"><i class="fas fa-home fa-2x"></i></a>
 					</li>
 					<li class="nav-item">
-						<a href="#" class="nav-link active"><i class="fas fa-user-circle fa-2x"></i></a>
+						<a href="profile.html" class="nav-link"><i class="fas fa-user-circle fa-2x"></i></a>
 					</li>
 					<li class="nav-item">
-						<a href="survey.html" class="nav-link"><i class="fas fa-clipboard-list fa-2x"></i></a>
+						<a href="#" class="nav-link active"><i class="fas fa-clipboard-list fa-2x"></i></a>
 					</li>
 					<li class="nav-item">
 						<a href="index.html" class="nav-link"><i class="fas fa-user-times fa-2x"></i></a>
@@ -29,40 +29,46 @@
 				</ul>
 			</div>
 		</nav>
-		<section id="profile-page" class="text-secondary mt-3">
+		<section id="survey-page" class="text-secondary mt-3">
 			<div class="container">
-				<h1 class="user-name px-3 mb-4">[Your Name Here]'s profile</h1>
-				<div class="user-customization px-3 py-4 bg-dark text-white">
-					<img src="foo" alt="User Avatar Here">
-					<p class="lead">About me paragraph. Lorem ipsum dolor something...</p>
-					<button class="btn btn-danger">Edit Section</button>
+				<h2 class="survey-welcome px-3 mb-4">[Your Name Here]'s Surveys</h2>
+			</div>	
+			
+			<div class="container">
+				<div class="card mb-4">
+					<div class="card-header">
+						<h3>User's Created Surveys</h3>
+						<table class="table">
+							<thead class="thead-dark">
+								<tr>
+									<th>Survey Type</th>
+									<th>Status</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Mentor</td>
+									<td>Complete</td>
+									<td><a href="#" class="btn btn-danger text-white">Go To Survey</a></td>
+									<td><a href="#" class="remove-survey-button text-dark"><i class="fas fa-times pt-2"></i></a></td>
+								</tr>
+								<tr>
+									<td>Mentee</td>
+									<td>Incomplete</td>
+									<td><a href="#" class="btn btn-danger text-white">Edit Survey</a></td>
+									<td><a href="#" class="remove-survey-button text-dark"><i class="fas fa-times pt-2"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="create-survey btn btn-dark btn-block">Create a new survey!</a>
+					</div>
 				</div>
-				
-				<div class="settings my-4 px-3">
-					<div class="row py-2">
-						<h4 class="px-3 font-weight-bold"><i class="fas fa-cogs"></i>&nbsp; Settings</h4>
-					</div>
-					<div class="row py-2">
-						<div class="col-md-4">
-							<button class="btn btn-dark btn-block">Change password</button>
-						</div>
-						<div class="col-md-4">
-							<button class="btn btn-secondary btn-block">Request group change</button>
-						</div>
-					
-						<div class="col-md-4">
-							<button class="btn btn-dark btn-block">Contact an administrator</button>
-						</div>
-					</div>
-					<div class="row py-2">	
-						<div class="col">
-							<button class="btn btn-danger btn-block">Search for Groups</button>
-						</div>
-					</div>
-				</div>
-				
-				
 			</div>
+
 		</section>
 		<footer id="profile-footer" class="bg-dark text-white p-2">
 			<div class="container">

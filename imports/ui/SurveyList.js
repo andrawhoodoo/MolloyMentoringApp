@@ -39,7 +39,7 @@ export default class SurveyList extends React.Component {
                             </table>
                         </div>
                         <div class="card-footer">
-                           <button class="create-survey btn btn-dark btn-block" onClick={() => {ReactDOM.render('./addsurvey.html', document.getElementById('AppConsole'))}}>Create a new survey!</button>
+                           <button class="create-survey btn btn-dark btn-block" onClick={() => {ReactDOM.render('./addsurvey.js', document.getElementById('AppConsole'))}}>Create a new survey!</button>
                         </div>
                     </div>
                 </div>

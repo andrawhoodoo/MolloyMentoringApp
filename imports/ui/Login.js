@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class Login extends React.Component {
     render() {
@@ -10,10 +11,10 @@ export default class Login extends React.Component {
                         <div class="container">
                             <div class="button-holder row p-0">
                                 <div class="col-sm-12 p-0 mb-4">
-                                    <a href="#" class="btn btn-block btn-dark"><i class="fas fa-pen"></i>&nbsp;Create Account</a>
+                                    <button class="btn btn-block btn-dark" onClick={() => {ReactDOM.render()}}><i class="fas fa-pen"></i>&nbsp;Create Account</button>
                                 </div>
                                 <div class="col-sm-12 p-0 mb-4">
-                                    <a href="home.html" class="btn btn-block btn-primary"><i class="fas fa-user"></i>&nbsp;Log in</a>
+                                    <button class="btn btn-block btn-primary" onClick={() => {ReactDOM.render()}}><i class="fas fa-user"></i>&nbsp;Log in</button>
                                 </div>
                             </div>
                         </div>

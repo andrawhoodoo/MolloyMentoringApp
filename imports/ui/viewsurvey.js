@@ -23,36 +23,39 @@ Template.body.events({
     const surveyAdminId = Surveys.findOne({_id:surveyId}).surveyAdmin;
     const surveyAdminName = Users.findOne({_id:surveyAdminId}).name.first + " " + Users.findOne({_id:surveyAdminId}).name.last;
 
-    // Question 1 variables
-    // Q1 ID & Text
-    const q1Id = Surveys.findOne({_id:surveyId}).questions[0];
-    const q1Text = Questions.findOne({_id:q1Id}).text;
-    // Q1: Opt1 - ID & Text
-    const q1o1Id = Questions.findOne({_id:q1Id}).options[0];
-    const q1o1Text = Options.findOne({_id:q1o1Id}).text;
-    // Q1: Opt2 - ID & Text
-    const q1o2Id = Questions.findOne({_id:q1Id}).options[1];
-    const q1o2Text = Options.findOne({_id:q1o2Id}).text;
-    // Q1: Opt3 - ID & Text
-    const q1o3Id = Questions.findOne({_id:q1Id}).options[2];
-    const q1o3Text = Options.findOne({_id:q1o3Id}).text;
-    // Q4: Opt4 - ID & Text
-    const q1o4Id = Questions.findOne({_id:q1Id}).options[3];
-    const q1o4Text = Options.findOne({_id:q1o4Id}).text;
+    // Load survey's question list array from DB, assign to var
+    const surveyQuestions = Surveys.findOne({_id:surveyId}).questions;
 
+    // TEMPORARY: obtain question # to preview
+    const questionNumber = target.questionNumber.value -1;
+    const questionTotal = surveyQuestions.length;
+
+    // Load question info
+    const questionId = surveyQuestions[questionNumber]; // Index of question number [todo: should be a var in a loop]
+    const questionText = Questions.findOne({_id:questionId}).text;  // Question's text
+    const questionOptions = Questions.findOne({_id:questionId}).options; // Question's options list
+
+    // Dynamicly load question's options' info into variables
+    // option[n]Id = option's ID, option[n]Text = option's text
+    for (var ii=0; ii < questionOptions.length; ii++) {
+      this["option" + (ii+1) + "Id"] = questionOptions[ii];
+      this["option" + (ii+1) + "Text"] = Options.findOne({_id:this["option" + ( ii + 1 ) + "Id"]}).text;
+    }
     // Fill text fields
 
+    target.questionNumber.value = questionNumber+1;
+    target.questionTotal.value = questionTotal;
     target.surveyAdminId.value = surveyAdminId;
     target.surveyAdminName.value = surveyAdminName;
-    target.q1Id.value = q1Id;
-    target.q1Text.value = q1Text;
-    target.q1o1Id.value = q1o1Id;
-    target.q1o1Text.value = q1o1Text;
-    target.q1o2Id.value = q1o2Id;
-    target.q1o2Text.value = q1o2Text;
-    target.q1o3Id.value = q1o3Id;
-    target.q1o3Text.value = q1o3Text;
-    target.q1o4Id.value = q1o4Id;
-    target.q1o4Text.value = q1o4Text;
+    target.questionId.value = questionId;
+    target.questionText.value = questionText;
+    target.option1Id.value = this.option1Id;
+    target.option1Text.value = this.option1Text;
+    target.option2Id.value = this.option2Id;
+    target.option2Text.value = this.option2Text;
+    target.option3Id.value = this.option3Id;
+    target.option3Text.value = this.option3Text;
+    target.option4Id.value = this.option4Id;
+    target.option4Text.value = this.option4Text;
   },
 });

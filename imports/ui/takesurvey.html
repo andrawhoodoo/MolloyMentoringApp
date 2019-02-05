@@ -1,0 +1,27 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Take Survey</h1>
+      <form class="take-survey">
+        <ul style="list-style-type:none;">
+          <li>Your User ID: <input type="text" name="userId" placeholder="Your User ID" /></li>
+          <li>Enter Survey ID: <input type="text" name="surveyId" placeholder="Survey ID" />
+            <input type="submit" value="Load Survey" class="load-survey" /></li>
+          <br>
+          <li>Answer Question Number <input type="text" name="questionNumber" value="1" /> of <input type="text" name="questionTotal" placeholder="Total #"/>
+            <input type="submit" value="Load Question" class="load-survey" /></li>
+          <br>
+          <li>Question ID: <input type="text" name="questionId" placeholder="Question ID" /> Text: <input type="text" name="questionText" /></li>
+            <ol>
+              <li><input type="radio" name="selection" value="1" />Option ID: <input type="text" name="option1Id" /> Text: <input type="text" name="option1Text" /></li>
+              <li><input type="radio" name="selection" value="2" />Option ID: <input type="text" name="option2Id" /> Text: <input type="text" name="option2Text" /></li>
+              <li><input type="radio" name="selection" value="3" />Option ID: <input type="text" name="option3Id" /> Text: <input type="text" name="option3Text" /></li>
+              <li><input type="radio" name="selection" value="4" />Option ID: <input type="text" name="option4Id" /> Text: <input type="text" name="option4Text" /></li>
+            </ol>
+          <br>
+          <li><input type="submit" value="Submit Answer" class="submit-answer" /></li>
+        </ul>
+      </form>
+    </header>
+   </div>
+</body>

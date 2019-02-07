@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import AddSurvey from './Survey';
+
 export default class SurveyList extends React.Component {
     render() {
         return (
@@ -39,7 +41,7 @@ export default class SurveyList extends React.Component {
                             </table>
                         </div>
                         <div class="card-footer">
-                           <button class="create-survey btn btn-dark btn-block" onClick={() => {ReactDOM.render('./addsurvey.js', document.getElementById('AppConsole'))}}>Create a new survey!</button>
+                           <button class="create-survey btn btn-dark btn-block" onClick={() => {ReactDOM.render(<AddSurvey />, document.getElementById('AppConsole'))}}>Create a new survey!</button>
                         </div>
                     </div>
                 </div>

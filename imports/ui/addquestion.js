@@ -1,67 +1,27 @@
-import { Template } from 'meteor/templating';
+import React from 'react';
 
-import { Questions } from '../api/questions.js';
-
-import { Options } from '../api/questions.js';
-
-import './addquestion.html';
-
-Template.body.events({
-  'submit .new-question'(event) {
-    // Prevent default browser form submit
-    event.preventDefault();
-
-    // Assign variables from inputs
-    const target = event.target;
-
-    const qText = target.qText.value;
-    const opt1 = target.opt1.value;
-    const opt2 = target.opt2.value;
-    const opt3 = target.opt3.value;
-    const opt4 = target.opt4.value;
-
-    // Write document to MongoDB
-    // Returns document's newly-created ID, if successful
-
-    const opt1Id = Options.insert({
-      text: opt1,
-      createdAt: new Date(), // Adds timestamp
-    });
-
-    const opt2Id = Options.insert({
-      text: opt2,
-      createdAt: new Date(), // Adds timestamp
-    });
-
-    const opt3Id = Options.insert({
-      text: opt3,
-      createdAt: new Date(), // Adds timestamp
-    });
-
-    const opt4Id = Options.insert({
-      text: opt4,
-      createdAt: new Date(), // Adds timestamp
-    });
-
-    const questionId = Questions.insert({
-      text: qText,
-      options: [ opt1Id, opt2Id, opt3Id, opt4Id ],
-      createdAt: new Date(), // Adds timestamp
-    });
-
-    // Provide feedback
-    alert("Success!");
-
-    // Clear form
-    var elements = document.getElementsByTagName("input");
-    for (var ii=0; ii < elements.length; ii++) {
-      if (elements[ii].type == "text") {
-        elements[ii].value = "";
-      }
+export default class AddQuestion extends React.Component {
+    render() {
+        return(
+            <div class="container">
+                <header>
+                    <h1>Add Question</h1>
+                    <form class="new-question">
+                        <ul>
+                          <li>Question: <input type="text" name="qText" placeholder="Type here..." /></li>
+                          <li>Option 1: <input type="text" name="opt1" placeholder="" /></li>
+                          <li>Option 2: <input type="text" name="opt2" placeholder="" /></li>
+                          <li>Option 3: <input type="text" name="opt3" placeholder="" /></li>
+                          <li>Option 4: <input type="text" name="opt4" placeholder="" /></li>
+                          <li><input type="submit" value="submit" name="submit" /></li>
+                        </ul>
+                        <p>The last Question ID created was: <input type="text" name="lastQuestionId" /></p>
+                        <p>Its associated Option IDs are: <input type="text" name="lastOptionIds" /></p>
+                    </form>
+                </header>
+           </div>
+        );
     }
+};
+  
 
-    // For debugging: easy copy/paste of last IDs created
-    target.lastQuestionId.value = questionId;
-    target.lastOptionIds.value = opt1Id + ", " + opt2Id + ", " + opt3Id + ", " + opt4Id;
-  },
-});

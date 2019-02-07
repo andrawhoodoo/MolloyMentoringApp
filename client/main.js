@@ -8,5 +8,9 @@ import Login from '../imports/ui/Login';
 import LoginBox from '../imports/ui/login-page';
 
 Meteor.startup(() => {
-    ReactDOM.render(<LoginBox />, document.getElementById('app'));
+    //needs conditional rendering
+    //render login-page on startup
+    //if login success, render app
+    
+    ReactDOM.render(<App />, document.getElementById('app'));
 });

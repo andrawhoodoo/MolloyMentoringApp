@@ -1,8 +1,8 @@
 import { Template } from 'meteor/templating';
 
-import { Surveys } from '../api/surveys.js';
+import { Surveys } from '../api/surveys';
 
-import './addsurvey.html';
+import '../imports/ui/Survey';
 
 Template.body.events({
   'submit .new-survey'(event) {

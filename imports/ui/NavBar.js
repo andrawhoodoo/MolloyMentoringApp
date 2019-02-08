@@ -8,27 +8,27 @@ import Profile from './Profile';
 export default class NavBar extends React.Component {
     render() {
         return (
-            <nav class="navbar navbar-expand bg-danger navbar-dark px-2">
-                <div class="container">
-                    <a href="#" id="brand-name" class="navbar-brand font-weight-bold">OMA</a>
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <button class="btn btn-sm btn-light mx-1" onClick={() => {
+            <nav className="navbar navbar-expand bg-danger navbar-dark px-2">
+                <div className="container">
+                    <a href="#" id="brand-name" className="navbar-brand font-weight-bold">OMA</a>
+                    <ul className="navbar-nav">
+                        <li className="nav-item">
+                            <button className="btn btn-sm btn-light mx-1" onClick={() => {
                                 ReactDOM.render(<Home />, document.getElementById('AppConsole'));
-                            }}><i class="fas fa-home fa-2x"></i></button>
+                            }}><i className="fas fa-home fa-2x"></i></button>
                         </li>
-                        <li class="nav-item">
-                            <button class="btn btn-sm btn-light mx-1" onClick={() => {
+                        <li className="nav-item">
+                            <button className="btn btn-sm btn-light mx-1" onClick={() => {
                                 ReactDOM.render(<Profile />, document.getElementById('AppConsole'));
-                            }}><i class="fas fa-user-circle fa-2x"></i></button>
+                            }}><i className="fas fa-user-circle fa-2x"></i></button>
                         </li>
-                        <li class="nav-item">
-                            <button class="btn btn-sm btn-light mx-1" onClick={() => {
+                        <li className="nav-item">
+                            <button className="btn btn-sm btn-light mx-1" onClick={() => {
                                 ReactDOM.render(<SurveyList />, document.getElementById('AppConsole'));
-                            }}><i class="fas fa-clipboard-list fa-2x"></i></button>
+                            }}><i className="fas fa-clipboard-list fa-2x"></i></button>
                         </li>
-                        <li class="nav-item">
-                            <button class="btn btn-sm btn-light mx-1"><i class="fas fa-user-times fa-2x"></i></button>
+                        <li className="nav-item">
+                            <button className="btn btn-sm btn-light mx-1"><i className="fas fa-user-times fa-2x"></i></button>
                         </li>
                     </ul>
                 </div>

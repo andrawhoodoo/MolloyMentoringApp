@@ -35,11 +35,11 @@ export default class AddSurvey extends React.Component {
     }
     render() {
         return (  
-          <div class="container">
+          <div className="container">
             <header>
               <h1>Add Survey</h1>
-              <form class="new-survey" onSubmit={this.submitSurvey.bind(this)}>
-                <ul class="list-unstyled">
+              <form className="new-survey" onSubmit={this.submitSurvey.bind(this)}>
+                <ul className="list-unstyled">
                   <li>Survey administrator: <input type="text" ref="surveyAdmin" name="surveyAdmin" placeholder="User ID" /></li>
 
                   <li>Question 1: <input type="text" ref="q1" name="q1" placeholder="Question ID" /></li>

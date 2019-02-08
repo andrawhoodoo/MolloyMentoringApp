@@ -10,23 +10,23 @@ export default class LoginCreate extends React.Component {
                 </div>
                 <div id="Login-Info-Float-Right">
                     <div id="Login-Section">
-                        <img class="Molloy-Logo" src="Molloy-Logo-Real.png" />
+                        <img className="Molloy-Logo" src="Molloy-Logo-Real.png" />
                         <h1> Create Account </h1>
                         <form>
                             <p>First Name: </p>
-                            <input class= "Login-Box" type="text" name="firstName" placeholder="Enter First Name" />
+                            <input className= "Login-Box" type="text" name="firstName" placeholder="Enter First Name" />
 
                             <p>Last Name: </p>
-                            <input class="Login-Box" type="text" name="lastName" placeholder="Enter Last Name" />
+                            <input className="Login-Box" type="text" name="lastName" placeholder="Enter Last Name" />
 
                             <p>Email: </p>
-                            <input class="Login-Box" type="Email" name="emailAddress" placeholder="Enter Last Name" />
+                            <input className="Login-Box" type="Email" name="emailAddress" placeholder="Enter Last Name" />
 
                             <p>Username: </p>
-                            <input class= "Login-Box" type="text" name="username" placeholder="Enter Username" />
+                            <input className= "Login-Box" type="text" name="username" placeholder="Enter Username" />
 
                             <p>Password: </p>
-                            <input class="Login-Box" type="password" name="password" placeholder="Enter Password" />
+                            <input className="Login-Box" type="password" name="password" placeholder="Enter Password" />
 
                             <input type="submit" name="" value="Create" />
                         </form>

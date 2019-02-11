@@ -1,6 +1,39 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Accounts } from 'meteor/accounts-base';
 
-export default class LoginCreate extends React.Component {
+import { Users } from '../api/users'
+
+export default class CreateUser extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			error: ''	
+		};
+	}
+	onSubmit(e) {
+		e.preventDefault();
+		
+		let firstName = this.refs.firstName.value.trim();
+		let lastName = this.refs.lastName.value.trim();
+		let email = this.refs.email.value.trim();
+		let password = this.refs.password.value.trim();
+		
+		if (password.length < 9) {
+			return this.setState({error: 'Password must be more than 8 characters long.'});
+		}
+		
+		Accounts.createUser({email: email, password: password}, (err) => {
+			if(err) {
+				this.setState({error: err.reason});
+			}
+			else {
+				this.setState({error: ''});
+			}
+		});
+		
+		Users.insert({email: email, firstName: firstName, lastName: lastName});
+	}
     render() {
         return(
             <div id="Login-Box">
@@ -12,24 +45,23 @@ export default class LoginCreate extends React.Component {
                     <div id="Login-Section">
                         <img className="Molloy-Logo" src="Molloy-Logo-Real.png" />
                         <h1> Create Account </h1>
-                        <form>
+                        <form onSubmit={this.onSubmit.bind(this)} noValidate>
                             <p>First Name: </p>
-                            <input className= "Login-Box" type="text" name="firstName" placeholder="Enter First Name" />
+                            <input className= "Login-Box" type="text" ref="firstName" name="firstName" placeholder="Enter First Name" />
 
                             <p>Last Name: </p>
-                            <input className="Login-Box" type="text" name="lastName" placeholder="Enter Last Name" />
+                            <input className="Login-Box" type="text" ref="lastName" name="lastName" placeholder="Enter Last Name" />
 
                             <p>Email: </p>
-                            <input className="Login-Box" type="Email" name="emailAddress" placeholder="Enter Last Name" />
-
-                            <p>Username: </p>
-                            <input className= "Login-Box" type="text" name="username" placeholder="Enter Username" />
+                            <input className="Login-Box" type="Email" ref="email" name="emailAddress" placeholder="Enter Last Name" />
 
                             <p>Password: </p>
-                            <input className="Login-Box" type="password" name="password" placeholder="Enter Password" />
+                            <input className="Login-Box" type="password" ref="password" name="password" placeholder="Enter Password" />
 
                             <input type="submit" name="" value="Create" />
                         </form>
+						{this.state.error ? <p className="text-warning">{this.state.error}</p> : undefined}
+						<Link to="/">Already have an account?</Link>
                     </div>
                 </div>
             </div>

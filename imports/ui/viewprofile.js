@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 
-import { Users } from '../api/users.js';
+import { Profiles } from '../api/profiles.js';
 
 import './viewprofile.html';
 
 Template.body.events({
-    'submit .view-user'(event) {
+    'submit .view-profile'(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -14,19 +14,19 @@ Template.body.events({
 
     const userId = target.userId.value;
 
-    const fName = Users.findOne({ _id:userId}).name.first;
-    const lName = Users.findOne({_id:userId}).name.last;
-    const street1 = Users.findOne({ _id:userId}).address.street1;
-    const street2 = Users.findOne({ _id:userId}).address.street2;
-    const city = Users.findOne({ _id:userId}).address.city;
-    const state = Users.findOne({ _id:userId}).address.state;
-    const zip = Users.findOne({ _id:userId}).address.zip;
-    const dob = Users.findOne({ _id:userId}).dob;
-    const email = Users.findOne({ _id:userId}).email;
-    const gender = Users.findOne({ _id:userId}).gender;
-    const pArea = Users.findOne({ _id:userId}).phone.area;
-    const pPrefix = Users.findOne({ _id:userId}).phone.prefix;
-    const pLine = Users.findOne({ _id:userId}).phone.line;
+    const fName = Profiles.findOne({ _id:userId}).name.first;
+    const lName = Profiles.findOne({_id:userId}).name.last;
+    const street1 = Profiles.findOne({ _id:userId}).address.street1;
+    const street2 = Profiles.findOne({ _id:userId}).address.street2;
+    const city = Profiles.findOne({ _id:userId}).address.city;
+    const state = Profiles.findOne({ _id:userId}).address.state;
+    const zip = Profiles.findOne({ _id:userId}).address.zip;
+    const dob = Profiles.findOne({ _id:userId}).dob;
+    const email = Profiles.findOne({ _id:userId}).email;
+    const gender = Profiles.findOne({ _id:userId}).gender;
+    const pArea = Profiles.findOne({ _id:userId}).phone.area;
+    const pPrefix = Profiles.findOne({ _id:userId}).phone.prefix;
+    const pLine = Profiles.findOne({ _id:userId}).phone.line;
 
     // Fill text fields
 

@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 
-import { Users } from '../api/users.js';
+import { Profiles } from '../api/profiles.js';
 
-import './adduser.html';
+import './addprofile.html';
 
 Template.body.events({
-  'submit .new-user'(event) {
+  'submit .new-profile'(event) {
     // Prevent default browser form submit
     event.preventDefault();
 
@@ -29,7 +29,7 @@ Template.body.events({
     // Write document to MongoDB
     // Returns document's newly-created ID, if successful
 
-    const newId = Users.insert({
+    const newId = Profiles.insert({
       name:{
       	first: fName,
       	last: lName

@@ -2,28 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
 
-import { Users } from '../api/users'
+import { Profiles } from '../api/profiles';
 
 export default class CreateUser extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			error: ''	
+			error: ''
 		};
 	}
 	onSubmit(e) {
 		e.preventDefault();
-		
+
 		let firstName = this.refs.firstName.value.trim();
 		let lastName = this.refs.lastName.value.trim();
 		let email = this.refs.email.value.trim();
 		let password = this.refs.password.value.trim();
-		
-		if (password.length < 9) {
-			return this.setState({error: 'Password must be more than 8 characters long.'});
+
+		if (password.length < 8) {
+			return this.setState({error: 'Password must be at least 8 characters long.'});
 		}
-		
-		Accounts.createUser({email: email, password: password}, (err) => {
+
+		Accounts.createUser({ email: email, password: password, profile:{ name:{ first: firstName, last: lastName } } }, (err) => {
 			if(err) {
 				this.setState({error: err.reason});
 			}
@@ -31,8 +31,7 @@ export default class CreateUser extends React.Component {
 				this.setState({error: ''});
 			}
 		});
-		
-		Users.insert({email: email, firstName: firstName, lastName: lastName});
+
 	}
     render() {
         return(

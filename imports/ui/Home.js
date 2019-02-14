@@ -52,13 +52,14 @@ export default class Home extends React.Component {
 							</div>
 						</div>
 					</div>
-//					<div className="group-search bg-light p-3 mb-4">
-//						<h4>Looking for more groups?</h4>
-//						<a href="#" className="btn btn-danger">Search for more...</a>
-//					</div>
 				</section>
 				<Footer />
 			</div>
         );
     }
 };
+
+//<div className="group-search bg-light p-3 mb-4">
+//	<h4>Looking for more groups?</h4>
+//	<a href="#" className="btn btn-danger">Search for more...</a>
+//</div>

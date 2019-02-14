@@ -23,12 +23,20 @@ export default class CreateUser extends React.Component {
 			return this.setState({error: 'Password must be at least 8 characters long.'});
 		}
 
-		Accounts.createUser({ email: email, password: password, profile:{ name:{ first: firstName, last: lastName } } }, (err) => {
+		Accounts.createUser({ email: email, password: password }, (err) => {
 			if(err) {
 				this.setState({error: err.reason});
 			}
 			else {
+				// On success, create extended information document in Profiles collection
+				// Assign _id to be identical to the new Account userId
+
+				var newProfileId = Meteor.userId();
+				Profiles.insert({ _id: newProfileId, name:{ first: firstName, last: lastName }, email: email });
+ 			  alert('MeteorId: ' + Meteor.userId() + '. Email: ' + Profiles.findOne({_id:newProfileId}).email);
+
 				this.setState({error: ''});
+
 			}
 		});
 
@@ -52,7 +60,7 @@ export default class CreateUser extends React.Component {
                             <input className="Login-Box" type="text" ref="lastName" name="lastName" placeholder="Enter Last Name" />
 
                             <p>Email: </p>
-                            <input className="Login-Box" type="Email" ref="email" name="emailAddress" placeholder="Enter Last Name" />
+                            <input className="Login-Box" type="Email" ref="email" name="emailAddress" placeholder="Enter Email Address" />
 
                             <p>Password: </p>
                             <input className="Login-Box" type="password" ref="password" name="password" placeholder="Enter Password" />

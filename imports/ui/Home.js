@@ -1,17 +1,31 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+import { Accounts } from 'meteor/accounts-base';
+
+import { Profiles } from '../api/profiles';
+
+
+
+
 import NavBar from './NavBar';
 import Footer from './Footer';
 
+
+
+
+
 export default class Home extends React.Component {
     render() {
+        var myId = Meteor.userId();
+        var myEmail = Profiles.findOne({_id:myId}).email;
         return (
             <div>
 				<NavBar />
 				<section id="home-page" className="text-secondary mt-3">
 					<div className="container">
-						<h2 className="welcome-name px-3 mb-4">Welcome [Your Name Here]!</h2>
-					</div>	
+						<h2 className="welcome-name px-3 mb-4">Welcome { myId }!</h2>
+					</div>
 					<div className="notifications bg-dark text-white p-3 mb-4">
 						<h4><i className="far fa-bell"></i>&nbsp; You have [ X ] new notifications!</h4>
 					</div>
@@ -59,7 +73,3 @@ export default class Home extends React.Component {
     }
 };
 
-//<div className="group-search bg-light p-3 mb-4">
-//	<h4>Looking for more groups?</h4>
-//	<a href="#" className="btn btn-danger">Search for more...</a>
-//</div>

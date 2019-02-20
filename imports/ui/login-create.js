@@ -23,7 +23,7 @@ export default class CreateUser extends React.Component {
 			return this.setState({error: 'Password must be at least 8 characters long.'});
 		}
 
-		Accounts.createUser({ email: email, password: password , profile:{ name:{ first: firstName, last: lastName } }} (err) => {
+		Accounts.createUser({ email: email, password: password }, (err) => {
 			if(err) {
 				this.setState({error: err.reason});
 			}

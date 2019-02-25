@@ -23,18 +23,11 @@ export default class CreateUser extends React.Component {
 			return this.setState({error: 'Password must be at least 8 characters long.'});
 		}
 
-		Accounts.createUser({ email: email, password: password }, (err) => {
+		Accounts.createUser({ email: email, password: password, profile: { name: {firstName, lastName}}}, (err) => {
 			if(err) {
 				this.setState({error: err.reason});
 			}
 			else {
-				// On success, create extended information document in Profiles collection
-				// Assign _id to be identical to the new Account userId
-
-				var newProfileId = Meteor.userId();
-				Profiles.insert({ _id: newProfileId, name:{ first: firstName, last: lastName }, email: email });
- 			  alert('MeteorId: ' + Meteor.userId() + '. Email: ' + Profiles.findOne({_id:newProfileId}).email);
-
 				this.setState({error: ''});
 
 			}

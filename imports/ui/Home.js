@@ -1,21 +1,39 @@
 import React from 'react';
-
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
 
-//import { Profiles } from '../api/profiles';
-
-
-
-
 import NavBar from './NavBar';
 import Footer from './Footer';
+import { Profiles } from '../api/profiles';
 
 
 
 
 
 export default class Home extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			name: ''
+		}
+	}
+	componentDidMount() {
+		this.profileTracker = Tracker.autorun(() => {
+			Meteor.subscribe('profileData');
+			const profile = Profiles.find().fetch();
+			this.setState(profile[0] ? {name: profile[0].name} : {name: ''});
+		});
+	}
+	componentWillUnmount() {
+		this.profileTracker.stop();
+	}
+	renderWelcome() {
+		return (
+			<h2 className="welcome-name px-3 mb-4">Welcome {this.state.name.first}!</h2>
+		);
+	}
     render() {
         var myId = Meteor.userId();
         //var myEmail = Profiles.findOne({_id:myId}).email;
@@ -24,7 +42,7 @@ export default class Home extends React.Component {
 				<NavBar />
 				<section id="home-page" className="text-secondary mt-3">
 					<div className="container">
-						<h2 className="welcome-name px-3 mb-4">Welcome { myId }!</h2>
+						{this.renderWelcome()}
 					</div>
 					<div className="notifications bg-dark text-white p-3 mb-4">
 						<h4><i className="far fa-bell"></i>&nbsp; You have [ X ] new notifications!</h4>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
 
-import { Profiles } from '../api/profiles';
+import '../api/profiles';
 
 export default class CreateUser extends React.Component {
 	constructor(props) {
@@ -14,10 +14,10 @@ export default class CreateUser extends React.Component {
 	onSubmit(e) {
 		e.preventDefault();
 
-		let firstName = this.refs.firstName.value.trim();
-		let lastName = this.refs.lastName.value.trim();
 		let email = this.refs.email.value.trim();
 		let password = this.refs.password.value.trim();
+		let fName = this.refs.firstName.value.trim();
+		let lName = this.refs.lastName.value.trim();
 
 		if (password.length < 8) {
 			return this.setState({error: 'Password must be at least 8 characters long.'});
@@ -28,19 +28,15 @@ export default class CreateUser extends React.Component {
 				this.setState({error: err.reason});
 			}
 			else {
-				// On success, create extended information document in Profiles collection
-				// Assign _id to be identical to the new Account userId
 
-				var newProfileId = Meteor.userId();
-				Profiles.insert({ _id: newProfileId, name:{ first: firstName, last: lastName }, email: email });
- 			  alert('MeteorId: ' + Meteor.userId() + '. Email: ' + Profiles.findOne({_id:newProfileId}).email);
+				// On success, create extended information document in Profiles collection
+				Meteor.call('createProfile', email, fName, lName);
 
 				this.setState({error: ''});
-
 			}
 		});
-
 	}
+
     render() {
         return(
             <div id="Login-Box">

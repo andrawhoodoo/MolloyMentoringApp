@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Accounts } from 'meteor/accounts-base';
 
-import { Profiles } from '../api/profiles';
+//import { Profiles } from '../api/profiles';
 
 
 
@@ -18,7 +18,7 @@ import Footer from './Footer';
 export default class Home extends React.Component {
     render() {
         var myId = Meteor.userId();
-        var myEmail = Profiles.findOne({_id:myId}).email;
+        //var myEmail = Profiles.findOne({_id:myId}).email;
         return (
             <div>
 				<NavBar />
@@ -72,4 +72,3 @@ export default class Home extends React.Component {
         );
     }
 };
-

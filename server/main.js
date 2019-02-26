@@ -4,7 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import '../imports/api/surveys';
 import '../imports/api/questions';
 import '../imports/api/profiles';
+import '../imports/api/groups';
 
 Meteor.startup(() => {
-  // code to run on server at startup
+  
 });

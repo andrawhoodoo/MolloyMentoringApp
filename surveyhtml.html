@@ -1,57 +1,50 @@
-<html>
+import React from 'react';
 
-<head>
-  <meta charset="utf-8">
-  <title>Molloy Mentoring Login</title>
-  <link rel="stylesheet" type"text/css" href="../mentoringApp/index.css">
-</head>
+export default class Survey extends React.Component {
+	render() {
+		return (
 
 <header id = "header"> 
-  <h1> <img id = "logo" src = "../mentoringApp/images/logo.png"></h1>
+  Survey
 </header>
 
 <body>
-  <script src="script.js"></script>
 
   <div class = "loginbox">
-
-    <img src="../mentoringApp//images/avatar.png"class="avatar">
 
     <section id = "quest1">
       <h1> Mentoring App Survey </h1>
       <form>
         <p> 1.  What is your Gender? </p>
         <ul>
-          <input type = "radio" name = "gender" value = "male"> Male <br><br>
-          <input type = "radio" name = "gender" value = "female"> Female <br><br>
-          <input type = "radio" name = "gender" value = "other"> Other <br><br>
+          <input type = "radio" name = "gender" value = "male"> Male <br>
+          <input type = "radio" name = "gender" value = "female"> Female <br>
+          <input type = "radio" name = "gender" value = "other"> Other <br>
         </ul>
       </form>
     </section>
-    <br><br><br><br><br><br><br><br>
+   
 
     <section id = "quest2">
      <form>
       <p> 2.  What is your current year? </p>
       <ul>
-        <input type = "radio" name = "year" value = "freshman"> Freshman <br><br>
-        <input type = "radio" name = "year" value = "sophmore"> Sophmore <br><br>
-        <input type = "radio" name = "year" value = "junior"> Junior <br><br>
-        <input type = "radio" name = "year" value = "senior"> Senior <br><br>
+        <input type = "radio" name = "year" value = "freshman"> Freshman <br>
+        <input type = "radio" name = "year" value = "sophmore"> Sophmore <br>
+        <input type = "radio" name = "year" value = "junior"> Junior <br>
+        <input type = "radio" name = "year" value = "senior"> Senior <br>
       </ul>
     </form>
   </section>
 
-  <br><br><br><br><br><br>
 
   <section id = "quest3">
    <form>
     <p> 1.  Where do you live?  </p>
     <ul>
       <input type = "radio" name = "home" value = "on campus"> On Campus 
-      <br><br>
-      <input type = "radio" name = "home" value = "off campus"> Off Campus 
-      <br> <br><br><br>
+      <br>
+      <input type = "radio" name = "home" value = "off campus"> Off Campus </br>
       <input type = "submit" name = "" value = "Submit">
     </ul>
   </form>
@@ -62,4 +55,6 @@
 
 </body>
 
-</html>
+  		)
+  }
+}

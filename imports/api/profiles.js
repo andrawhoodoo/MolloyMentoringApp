@@ -24,5 +24,25 @@ Meteor.methods({
 			  last: lName
 			}
 		});
-    }
+    },
+	'updateAddress': function(addressObj) {
+		if(!this.userId) {
+			throw new Meteor.Error('not-authorized');
+		}
+		Profiles.update({
+			_id: this.userId
+		}, {
+			$set: {address: addressObj}
+		});
+	},
+	'unsetAddress': function() {
+		if(!this.userId) {
+			throw new Meteor.Error('not-authorized');
+		}
+		Profiles.update({
+			_id: this.userId
+		}, {
+			$unset: {address: ''}
+		});
+	}
 });

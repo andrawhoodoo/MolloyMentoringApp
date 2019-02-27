@@ -9,7 +9,8 @@ import Home from "../ui/Home";
 import Profile from "../ui/Profile";
 import SurveyList from "../ui/SurveyList";
 import AddSurvey from "../ui/Survey";
-import ChatroomLogin from "../chatroom/ChatroomLogin";
+import ChatroomLogin from "../ui/chatroom/ChatroomLogin";
+import GroupSearch from '../ui/GroupSearch';
 import NotFound from "../ui/NotFound";
 
 export const browserHistory = createBrowserHistory();
@@ -20,7 +21,8 @@ const authenticatedPages = [
   "/profile",
   "/surveys",
   "/create-survey",
-  "/ChatroomLogin"
+  "/ChatroomLogin",
+  "/group-search"
 ];
 
 const onEnterPublicPage = Component => {
@@ -77,6 +79,11 @@ export const routes = (
         exact
         path="/create-survey"
         render={() => onEnterPrivatePage(AddSurvey)}
+      />
+	  <Route
+        exact
+        path="/group-search"
+        render={() => onEnterPrivatePage(GroupSearch)}
       />
       <Route
         render={() => {

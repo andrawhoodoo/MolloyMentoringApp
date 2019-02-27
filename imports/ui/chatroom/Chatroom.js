@@ -1,8 +1,8 @@
 import React from "react";
-import NavBar from "../ui/NavBar";
+import NavBar from "../NavBar";
 import Messages from "./Messages";
 import ChatInput from "./ChatInput";
-import Footer from '../ui/Footer';
+import Footer from '../Footer';
 
 export default class Chatroom extends React.Component {
   constructor(props) {

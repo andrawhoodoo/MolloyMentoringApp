@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
+import { Link } from 'react-router-dom';
 
 import { Groups } from '../api/groups';
 
@@ -52,6 +53,9 @@ export default class ActiveGroups extends React.Component {
 								{this.renderActiveGroupsItems()}
 							</tbody>
 						</table>
+						<button className='btn btn-danger btn-block'>
+							<Link to='/group-search' className='text-white'>Search For Groups</Link>
+						</button>
 					</div>
 				</div>
 			</div>

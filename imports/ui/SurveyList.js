@@ -68,9 +68,11 @@ export default class SurveyList extends React.Component {
 									</tbody>
 								</table>
 							</div>
+							{/*
 							<div className="card-footer">
 							   <button className="create-survey btn btn-dark btn-block"><Link to='/create-survey'>Create a new survey!</Link></button>
 							</div>
+							*/}
 						</div>
 					</div>
 				</section>

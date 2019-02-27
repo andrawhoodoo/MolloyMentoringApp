@@ -21,14 +21,14 @@ export default class ChatInput extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className='my-3'>
         <input
           type="text"
           value={this.state.chatInput}
           onChange={this.handleChange}
           placeholder=" Message "
         />
-        <input type="submit" value="Send" />
+        <input className="btn btn-danger" type="submit" value="Send" />
       </form>
     );
   }

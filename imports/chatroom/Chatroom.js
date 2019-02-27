@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../ui/NavBar";
 import Messages from "./Messages";
 import ChatInput from "./ChatInput";
+import Footer from '../ui/Footer';
 
 export default class Chatroom extends React.Component {
   constructor(props) {
@@ -47,9 +48,13 @@ export default class Chatroom extends React.Component {
     return (
       <div>
         <NavBar />
-        <div>Welcome {this.props.username}</div>
-        <ChatInput onSend={this.handleSend} />
-        <Messages messages={this.state.messages} />
+		<h1 className="text-white bg-dark text-left px-3 py-2">Welcome {this.props.username}</h1>
+		<div className="container">
+			
+			<ChatInput onSend={this.handleSend} />
+			<Messages className="mb-3" messages={this.state.messages} />
+		</div>
+		<Footer />
       </div>
     );
   }

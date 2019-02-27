@@ -40,6 +40,8 @@ export default class ActiveGroups extends React.Component {
 				<div className="card mb-4">
 					<div className="card-header">
 						<h3>Your Active Groups</h3>
+					</div>
+					<div className='card-body'>
 						<table className="table table-striped">
 							<thead className="thead-dark">
 								<tr>

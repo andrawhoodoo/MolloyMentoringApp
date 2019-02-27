@@ -24,14 +24,12 @@ export default class GroupSearch extends React.Component {
 	componentWillUnmount() {
 		this.groupsTracker.stop();
 	}
-	renderPossibleGroups() {
+	renderGroups() {
 		return this.state.groups.map(group => {
 			return (
 				<tr key={group._id}>
 					<td>{group.name}</td>
-					<td>{group.mentorId}</td>
-					<td>{group.menteeId}</td>
-					<td><a href="#" className="btn btn-danger text-white">Go To Group</a></td>
+					<td><button className="btn btn-danger"><Link</td>
 				</tr>
 			);
 		});
@@ -41,7 +39,23 @@ export default class GroupSearch extends React.Component {
 			<Navbar />
 			<section id="group-search" className='text-secondary mt-3'>
 				<div className='container'>
-					
+					<div className="card mb-4">
+						<div className="card-header">
+							<h3>Search for a group!</h3>
+						</div>
+						<div className='card-body'>
+							<table className="table table-striped">
+								<thead className="thead-dark">
+									<tr>
+										<th>Group Name</th>
+										<th></th>
+									</tr>
+								<tbody>
+									{this.renderGroups()}
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</section>
 			<Footer />

@@ -17,26 +17,34 @@ export default class Chatroom extends React.Component {
       messages: this.state.messages.concat(message)
     });
   }
+
   handleSend(message) {
     const fullMessage = {
       username: this.props.username,
       message
     };
-    const messagesDummy = this.props.messages;
     const myInit = {
       method: "POST",
-      body: JSON.stringify(messagesDummy),
-      headers: {
-        "Content-Type": "application/json"
-      }
+      body: JSON.stringify({ message: "" })
     };
-    const myRequest = new Request("http://localhost:3000/?#", myInit);
+    const myRequest = new Request(
+      "http://localhost:8000/" +
+        JSON.stringify(fullMessage.username) +
+        JSON.stringify(fullMessage.message),
+      myInit
+    );
+
     fetch(myRequest)
-      .then(() => {
-        this.appendMessage(fullMessage);
+      .then(response => {
+        console.log("Message Recieved");
+        return response.text();
+        //console.log(response.text());
       })
-      .then(() => {
-        console.log(this.state.messages);
+      .then(text => {
+        console.log("Message Appended");
+        console.log(JSON.stringify(text));
+        const newMessage = { message: text };
+        this.appendMessage(newMessage);
       })
       .catch(error => {
         console.error("Error:", error);

@@ -1,5 +1,4 @@
 import React from "react";
-import Messages from "./Messages";
 
 export default class ChatInput extends React.Component {
   constructor(props) {

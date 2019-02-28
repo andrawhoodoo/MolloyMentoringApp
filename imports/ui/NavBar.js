@@ -43,7 +43,7 @@ export default class NavBar extends React.Component {
             </li>
             <li className="nav-item">
               <button className="btn btn-sm btn-dark mx-1">
-                <Link className="text-white" to="/ChatroomLogin">
+                <Link className="text-white" to="/Chatroom">
                   <i className="fas fa-comments fa-2x" />
                 </Link>
               </button>

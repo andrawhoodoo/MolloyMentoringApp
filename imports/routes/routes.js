@@ -9,7 +9,7 @@ import Home from "../ui/Home";
 import Profile from "../ui/Profile";
 import SurveyList from "../ui/SurveyList";
 import AddSurvey from "../ui/Survey";
-import ChatroomLogin from "../ui/chatroom/ChatroomLogin";
+import Chatroom from "../ui/chatroom/Chatroom";
 import GroupSearch from '../ui/GroupSearch';
 import NotFound from "../ui/NotFound";
 
@@ -21,7 +21,7 @@ const authenticatedPages = [
   "/profile",
   "/surveys",
   "/create-survey",
-  "/ChatroomLogin",
+  "/chatroom",
   "/group-search"
 ];
 
@@ -67,8 +67,8 @@ export const routes = (
       <Route exact path="/profile" render={() => onEnterPrivatePage(Profile)} />
       <Route
         exact
-        path="/ChatroomLogin"
-        render={() => onEnterPrivatePage(ChatroomLogin)}
+        path="/Chatroom"
+        render={() => onEnterPrivatePage(Chatroom)}
       />
       <Route
         exact

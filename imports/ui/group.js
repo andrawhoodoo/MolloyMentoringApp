@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Tracker } from 'meteor/Tracker';
+import { Tracker } from 'meteor/tracker';
 
 import { Groups } from '../api/groups';
 
@@ -25,12 +25,12 @@ export default class Group extends React.Component {
 		return (
 			<div>
 				<h1>{this.state.group.name}</h1>
-				{this.state.group.description ? return <p className="lead">{this.state.group.description}</p> : undefined}
+				{this.state.group &&  this.state.group.description ? <p className="lead">{this.state.group.description}</p> : undefined}
 				<div>
 					<p>Want to join? Pick a role & take the survey!</p>
 					<ul>
-						<li><input type='radio' name='role' value="Mentor">Mentor</li>
-						<li><input type='radio' name='role' value="Mentee">Mentee</li>
+						<li><input type='radio' name='role' value="Mentor" />Mentor</li>
+						<li><input type='radio' name='role' value="Mentee" />Mentee</li>
 					</ul>
 					<button>Take Survey</button>
 				</div>

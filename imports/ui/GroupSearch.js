@@ -4,6 +4,7 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
 import { Groups } from '../api/groups';
+import Group from './Group';
 import NavBar from './NavBar';
 import Footer from './Footer';
 

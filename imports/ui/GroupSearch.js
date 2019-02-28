@@ -11,11 +11,12 @@ export default class GroupSearch extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			search: '',
 			groups: []
 		}
 	}
 	componentDidMount() {
-		let groupsTracker = Tracker.autorun(() => {
+		this.groupsTracker = Tracker.autorun(() => {
 			Meteor.subscribe('groupsData');
 			const groupSub = Groups.find().fetch();
 			this.setState(groupSub ? {groups: groupSub} : {groups: []});
@@ -24,41 +25,63 @@ export default class GroupSearch extends React.Component {
 	componentWillUnmount() {
 		this.groupsTracker.stop();
 	}
-	renderGroups() {
+	startSearch(id) {
+		this.setState({search: id});		
+	}
+	renderGroupsList() {
 		return this.state.groups.map(group => {
 			return (
 				<tr key={group._id}>
 					<td>{group.name}</td>
-					<td><button className="btn btn-danger"><Link</td>
+					<td><button className="btn btn-danger" onClick={this.startSearch(group._id).bind(this)}>Look at group</button></td>
 				</tr>
 			);
 		});
 	}
+	back() {
+		this.setState({search: ''});
+	}
 	render() {
-		<div>
-			<Navbar />
-			<section id="group-search" className='text-secondary mt-3'>
-				<div className='container'>
-					<div className="card mb-4">
-						<div className="card-header">
-							<h3>Search for a group!</h3>
-						</div>
-						<div className='card-body'>
-							<table className="table table-striped">
-								<thead className="thead-dark">
-									<tr>
-										<th>Group Name</th>
-										<th></th>
-									</tr>
-								<tbody>
-									{this.renderGroups()}
-								</tbody>
-							</table>
-						</div>
-					</div>
+		if(this.state.search !== '') {
+			return (
+				<div>
+					<NavBar />
+					<Group id={this.state.search} />
+					<button className="btn btn-block btn-dark text-white my-5" onClick={this.back.bind(this)}>Return to List</button>
+					<Footer />
 				</div>
-			</section>
-			<Footer />
-		<div>
+			);
+		}
+		else {
+			return (
+				<div>
+					<NavBar />
+					<section id="group-search" className='text-secondary mt-3'>
+						<div className='container'>
+							<div className="card mb-4">
+								<div className="card-header">
+									<h3>Search for a group!</h3>
+								</div>
+								<div className='card-body'>
+									<table className="table table-striped">
+										<thead className="thead-dark">
+											<tr>
+												<th>Group Name</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
+											{this.renderGroupsList()}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</section>
+					<Footer />
+				</div>
+			);
+		}
+		
 	}
 }

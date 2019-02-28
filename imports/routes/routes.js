@@ -11,6 +11,7 @@ import SurveyList from "../ui/SurveyList";
 import AddSurvey from "../ui/Survey";
 import Chatroom from "../ui/chatroom/Chatroom";
 import GroupSearch from '../ui/GroupSearch';
+import CreateGroup from '../ui/CreateGroup';
 import NotFound from "../ui/NotFound";
 
 export const browserHistory = createBrowserHistory();
@@ -21,6 +22,7 @@ const authenticatedPages = [
   "/profile",
   "/surveys",
   "/create-survey",
+  "/create-group",
   "/chatroom",
   "/group-search"
 ];
@@ -79,6 +81,11 @@ export const routes = (
         exact
         path="/create-survey"
         render={() => onEnterPrivatePage(AddSurvey)}
+      />
+	  <Route
+        exact
+        path="/create-group"
+        render={() => onEnterPrivatePage(CreateGroup)}
       />
 	  <Route
         exact

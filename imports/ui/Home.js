@@ -7,6 +7,7 @@ import { Accounts } from 'meteor/accounts-base';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import ActiveGroups from './ActiveGroups';
+import UserCreatedGroups from './UserCreatedGroups';
 import { Profiles } from '../api/profiles';
 
 export default class Home extends React.Component {
@@ -44,9 +45,13 @@ export default class Home extends React.Component {
 						<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications} new notifications!</h4>
 					</div>
 					<ActiveGroups />
+					<UserCreatedGroups />
 					<div className="text-center container py-5">
 						<Link to='/group-search' className='text-white'>
 								<button className='btn btn-danger btn-lg'>Search For Groups</button>
+						</Link>
+						<Link to='/create-group' className='text-white'>
+							<button className='btn btn-info btn-lg'>Create a New Group!</button>
 						</Link>
 					</div>
 				</section>

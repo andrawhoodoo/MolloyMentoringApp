@@ -1,49 +1,15 @@
 import React from 'react';
-import { Mongo } from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
 
 import { Surveys } from '../api/surveys';
 import { Questions } from '../api/questions';
-import { Options } from '../api/options';\
+import { Options } from '../api/options';
 
-import NavBar from './NavBar';
-import Footer from './Footer';
-import { browserHistory } from '../routes/routes';
-
-export default class AddSurvey extends React.Component {
-    submitSurvey(e) {
-        e.preventDefault();
-
-        let surveyAdmin = this.refs.surveyAdmin.value.trim();
-        let q1 = this.refs.q1.value.trim();
-        let q2 = this.refs.q2.value.trim();
-        let q3 = this.refs.q3.value.trim();
-        let q4 = this.refs.q4.value.trim();
-        let q5 = this.refs.q5.value.trim();
-        let q6 = this.refs.q6.value.trim();
-        let q7 = this.refs.q7.value.trim();
-        let q8 = this.refs.q8.value.trim();
-        let q9 = this.refs.q9.value.trim();
-        let q10 = this.refs.q10.value.trim();
-
-        console.log('Foo');
-        const surveyId = Surveys.insert({
-          surveyAdmin: surveyAdmin,
-          questions: [ q1, q2, q3, q4, q5, q6, q7, q8, q9, q10 ],
-          createdAt: new Date(), // Adds timestamp
-        });
-
-        let elements = document.getElementsByTagName("input");
-        for (var ii=0; ii < elements.length; ii++) {
-          if (elements[ii].type == "text") {
-            elements[ii].value = "";
-          }
-        }
-		browserHistory.replace('/surveys');
-    }
+export default class CreateSurvey extends React.Component {
     render() {
         return (
           <div>
-              <NavBar />
               <div className="container">
                 <header>
                   <h1>Add Survey</h1>
@@ -67,7 +33,6 @@ export default class AddSurvey extends React.Component {
                   </form>
                 </header>
               </div>
-              <Footer />
           </div>
         );
     }

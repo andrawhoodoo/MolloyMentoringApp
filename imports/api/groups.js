@@ -8,6 +8,9 @@ if(Meteor.isServer) {
 	Meteor.publish('groupsData', function() {
 		return Groups.find({});
 	});
+	Meteor.publish('createdGroupsData', function() {
+		return Groups.find({adminId: this.userId});
+	});
 }
 
 Meteor.methods({
@@ -18,10 +21,11 @@ Meteor.methods({
 		Groups.insert({
 			name: groupName,
 			surveyId: surveyId,
-			description: description,
+			description: description || '',
 			mentors_pool: '',
 			mentees_pool: '',
-			pairs: ''
-		})
+			pairs: '',
+			adminId: this.userId
+		});
 	}
 })

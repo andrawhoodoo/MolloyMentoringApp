@@ -26,8 +26,8 @@ export default class ActiveGroups extends React.Component {
 		return this.state.groups.map(group => {
 			return (
 				<tr key={group._id}>
-					<td>{group.name}</td>
-					<td>{group.description || undefined}</td>
+					<td className="font-weight-bold">{group.name}</td>
+					<td className="font-italic">{group.description || undefined}</td>
 					<td><a href="#" className="btn btn-danger text-white">Go To Group</a></td>
 				</tr>
 			);

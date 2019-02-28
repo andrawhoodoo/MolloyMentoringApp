@@ -8,7 +8,8 @@ export default class Group extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			group: ''
+			group: '',
+			error: ''
 		}
 	}
 	componentDidMount() {
@@ -24,15 +25,23 @@ export default class Group extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>{this.state.group.name}</h1>
-				{this.state.group &&  this.state.group.description ? <p className="lead">{this.state.group.description}</p> : undefined}
-				<div>
-					<p>Want to join? Pick a role & take the survey!</p>
-					<ul>
-						<li><input type='radio' name='role' value="Mentor" />Mentor</li>
-						<li><input type='radio' name='role' value="Mentee" />Mentee</li>
-					</ul>
-					<button>Take Survey</button>
+				<h1 className="font-weight-bold bg-dark text-white px-5 py-2">Group Discovery</h1>
+				<div className="container">
+					<div className="card mt-5">
+						<div className="card-header">
+							<h2>{this.state.group.name}</h2>
+							{this.state.group &&  this.state.group.description ? <p className="lead font-italic">{this.state.group.description}</p> : undefined}
+						</div>
+						<div className="card-body">
+							<p>Want to join? Pick a role & take the survey!</p>
+							<ul className='list-unstyled'>
+								<li><input type='radio' name='role' value="Mentor" />Mentor</li>
+								<li><input type='radio' name='role' value="Mentee" />Mentee</li>
+							</ul>
+							<button>Take Survey</button>
+							{this.state.error ? <p className='text-danger font-weight-bold'>{this.state.error}</p> : undefined}
+						</div>
+					</div>
 				</div>
 			</div>
 		);

@@ -42,44 +42,48 @@ export default class AddressForm extends React.Component {
 	render() {
 		if(this.state.isEditing && this.state.address) {
 			return (
-				<form className="profileEditor">
-					<ul className="list-unstyled">
-						<li>Street 1: <input type="text" ref="street1" defaultValue={this.state.address.street1} /></li>
-						<li>Street 2: <input type="text" ref="street2" defaultValue={this.state.address.street2} /></li>
-						<li>City: <input type="text" ref="city" defaultValue={this.state.address.city} /></li>
-						<li>State: <input type="text" ref="state" defaultValue={this.state.address.state} /></li>
-						<li>Zip: <input type="text" ref="zip" defaultValue={this.state.address.zip} /></li>
-					</ul>
-					<button className="btn btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
-				</form>
-			)
+				<div className="container mb-3">
+					<form className="profileEditor">
+						<ul className="list-unstyled">
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Street 1: </span></div><input className="form-control" type="text" ref="street1" defaultValue={this.state.address.street1} /></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Street 2: </span></div><input className="form-control" type="text" ref="street2" defaultValue={this.state.address.street2} /></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">City: </span></div><input className="form-control" type="text" ref="city" defaultValue={this.state.address.city} /></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">State: </span></div><input className="form-control" type="text" ref="state" defaultValue={this.state.address.state} /></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Zip: </span></div><input className="form-control" type="text" ref="zip" defaultValue={this.state.address.zip} /></div></li>
+						</ul>
+						<button className="btn btn-lg btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
+					</form>
+				</div>
+			);
 		}
 		else if(this.state.address) {
 			return (
-				<div>
+				<div className="container mb-3">
 					<ul className="list-unstyled">
-						<li>Street 1: {this.state.address.street1}</li>
-						<li>Street 2: {this.state.address.street2}</li>
-						<li>City: {this.state.address.city}</li>
-						<li>State: {this.state.address.state}</li>
-						<li>Zip: {this.state.address.zip}</li>
+						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">Street 1: </span>{this.state.address.street1}</li>
+						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">Street 2: </span>{this.state.address.street2}</li>
+						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">City: </span>{this.state.address.city}</li>
+						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">State: </span>{this.state.address.state}</li>
+						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">Zip: </span>{this.state.address.zip}</li>
 					</ul>
-					<button className="btn btn-danger" onClick={this.editAddress.bind(this)}>Edit your address</button>
+					<button className="btn btn-danger btn-lg" onClick={this.editAddress.bind(this)}>Edit your address</button>
 				</div>
 			);
 		}
 		else {
 			return (
-				<form className="profileEditor">
-					<ul className="list-unstyled">
-						<li>Street 1: <input type="text" ref="street1"/></li>
-						<li>Street 2: <input type="text" ref="street2"/></li>
-						<li>City: <input type="text" ref="city"/></li>
-						<li>State: <input type="text" ref="state"/></li>
-						<li>Zip: <input type="text" ref="zip"/></li>
-					</ul>
-					<button className="btn btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
-				</form>
+				<div className="container mb-3">
+					<form className="profileEditor">
+						<ul className="list-unstyled">
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Street 1: </span></div><input className="form-control" type="text" ref="street1"/></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Street 2: </span></div><input className="form-control" type="text" ref="street2"/></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">City: </span></div><input className="form-control" type="text" ref="city"/></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">State: </span></div><input className="form-control" type="text" ref="state"/></div></li>
+							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Zip: </span></div><input className="form-control" type="text" ref="zip"/></div></li>
+						</ul>
+						<button className="btn btn-lg btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
+					</form>
+				</div>
 			);
 		}
 	}

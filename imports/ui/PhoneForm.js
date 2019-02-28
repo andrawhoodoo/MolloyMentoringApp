@@ -41,36 +41,40 @@ export default class PhoneForm extends React.Component {
 	render() {
 		if(this.state.isEditing && this.state.phone) {
 			return (
-				<form className="profileEditor">
-					<p className="lead">Phone: &nbsp;
-						<input type="text" ref="area" defaultValue={this.state.phone.area} />-
-						<input type="text" ref="pre" defaultValue={this.state.phone.pre} />-
-						<input type="text" ref="line" defaultValue={this.state.phone.line} />
-					</p>
-					<button className="btn btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
-				</form>
+				<div className="container mb-3">
+					<form className="profileEditor">
+						<div className="input-group mb-3"><div className="input-group-prepend"><span className="input-group-text">Phone: </span></div>
+							<input className="form-control" type="text" ref="area" defaultValue={this.state.phone.area} />-
+							<input className="form-control" type="text" ref="pre" defaultValue={this.state.phone.pre} />-
+							<input className="form-control" type="text" ref="line" defaultValue={this.state.phone.line} />
+						</div>
+						<button className="btn btn-danger btn-lg" onClick={this.onSubmit.bind(this)}>Submit</button>
+					</form>
+				</div>
 			)
 		}
 		else if(this.state.phone) {
 			return (
-				<div>
-					<p className="lead">Phone: &nbsp;
+				<div className="container mb-3">
+					<div className="mb-3"><span className="mr-2 my-2 p-1 rounded bg-light text-dark">Phone:</span>
 					{this.state.phone.area} - {this.state.phone.pre} - {this.state.phone.line}
-					</p>
-					<button className="btn btn-danger" onClick={this.editPhone.bind(this)}>Edit your phone number</button>
+					</div>
+					<button className="btn btn-danger btn-lg" onClick={this.editPhone.bind(this)}>Edit your phone number</button>
 				</div>
 			);
 		}
 		else {
 			return (
-				<form className="profileEditor">
-					<p className="lead">Phone: &nbsp;
-						<input type="text" ref="area" placeholder='area code' />-
-						<input type="text" ref="pre" placeholder='XXX' />-
-						<input type="text" ref="line" placeholder='XXXX' />
-					</p>
-					<button className="btn btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
-				</form>
+				<div className="container mb-3">
+					<form className="profileEditor">
+						<div className="input-group mb-3"><div className="input-group-prepend"><span className="input-group-text">Phone:</span></div>
+							<input className="form-control" type="text" ref="area" placeholder='(XXX)' />
+							<input className="form-control" type="text" ref="pre" placeholder='XXX' />
+							<input className="form-control" type="text" ref="line" placeholder='XXXX' />
+						</div>
+						<button className="btn  btn-lg btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
+					</form>
+				</div>
 			);
 		}
 	}

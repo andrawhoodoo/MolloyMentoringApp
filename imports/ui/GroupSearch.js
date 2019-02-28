@@ -49,7 +49,9 @@ export default class GroupSearch extends React.Component {
 				<div>
 					<NavBar />
 					<Group id={this.state.search} />
-					<button className="btn btn-block btn-dark text-white my-5" onClick={this.back.bind(this)}>Return to List</button>
+					<div className="container">
+						<button className="btn btn-lg btn-dark text-white my-5" onClick={this.back.bind(this)}>Return to List</button>
+					</div>
 					<Footer />
 				</div>
 			);

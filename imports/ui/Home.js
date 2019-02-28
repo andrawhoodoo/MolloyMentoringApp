@@ -29,7 +29,7 @@ export default class Home extends React.Component {
 	}
 	renderWelcome() {
 		return (
-			<h1 className="welcome-name px-3 mb-4">Welcome {this.state.name.first}!</h1>
+			<h1 className="welcome-name text-dark mb-4">Welcome {this.state.name.first}!</h1>
 		);
 	}
     render() {
@@ -37,7 +37,7 @@ export default class Home extends React.Component {
             <div>
 				<NavBar />
 				<section id="home-page" className="text-secondary mt-3">
-					<div className="container">
+					<div className="px-3">
 						{this.renderWelcome()}
 					</div>
 					<div className="notifications bg-dark text-white p-3 mb-4">

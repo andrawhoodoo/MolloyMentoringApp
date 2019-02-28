@@ -28,9 +28,9 @@ export default class PhoneForm extends React.Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const Phone = {
-			area: this.refs.area.value.trim(), 
-			pre: this.refs.pre.value.trim(), 
-			line: this.refs.line.value.trim(), 
+			area: this.refs.area.value.trim(),
+			pre: this.refs.pre.value.trim(),
+			line: this.refs.line.value.trim(),
 
 		};
 		Meteor.call('updatePhone', Phone);
@@ -42,7 +42,7 @@ export default class PhoneForm extends React.Component {
 		if(this.state.isEditing && this.state.phone) {
 			return (
 				<form className="profileEditor">
-					<p className="lead">Phone: &nbsp; 
+					<p className="lead">Phone: &nbsp;
 						<input type="text" ref="area" defaultValue={this.state.phone.area} />-
 						<input type="text" ref="pre" defaultValue={this.state.phone.pre} />-
 						<input type="text" ref="line" defaultValue={this.state.phone.line} />
@@ -54,7 +54,7 @@ export default class PhoneForm extends React.Component {
 		else if(this.state.phone) {
 			return (
 				<div>
-					<p className="lead">Phone: &nbsp; 
+					<p className="lead">Phone: &nbsp;
 					{this.state.phone.area} - {this.state.phone.pre} - {this.state.phone.line}
 					</p>
 					<button className="btn btn-danger" onClick={this.editPhone.bind(this)}>Edit your phone number</button>
@@ -64,8 +64,7 @@ export default class PhoneForm extends React.Component {
 		else {
 			return (
 				<form className="profileEditor">
-					<ul className="list-unstyled">
-					<p className="lead">Phone: &nbsp; 
+					<p className="lead">Phone: &nbsp;
 						<input type="text" ref="area" placeholder='area code' />-
 						<input type="text" ref="pre" placeholder='XXX' />-
 						<input type="text" ref="line" placeholder='XXXX' />

@@ -28,9 +28,10 @@ export default class AddressForm extends React.Component {
 	onSubmit(e) {
 		e.preventDefault();
 		const Address = {
-			street: this.refs.street.value.trim(), 
-			city: this.refs.city.value.trim(), 
-			state: this.refs.state.value.trim(), 
+			street1: this.refs.street1.value.trim(),
+			street2: this.refs.street2.value.trim(),
+			city: this.refs.city.value.trim(),
+			state: this.refs.state.value.trim(),
 			zip: this.refs.zip.value.trim()
 		};
 		Meteor.call('updateAddress', Address);
@@ -43,7 +44,8 @@ export default class AddressForm extends React.Component {
 			return (
 				<form className="profileEditor">
 					<ul className="list-unstyled">
-						<li>Street: <input type="text" ref="street" defaultValue={this.state.address.street} /></li>
+						<li>Street 1: <input type="text" ref="street1" defaultValue={this.state.address.street1} /></li>
+						<li>Street 2: <input type="text" ref="street2" defaultValue={this.state.address.street2} /></li>
 						<li>City: <input type="text" ref="city" defaultValue={this.state.address.city} /></li>
 						<li>State: <input type="text" ref="state" defaultValue={this.state.address.state} /></li>
 						<li>Zip: <input type="text" ref="zip" defaultValue={this.state.address.zip} /></li>
@@ -56,7 +58,8 @@ export default class AddressForm extends React.Component {
 			return (
 				<div>
 					<ul className="list-unstyled">
-						<li>Street: {this.state.address.street}</li>
+						<li>Street 1: {this.state.address.street1}</li>
+						<li>Street 2: {this.state.address.street2}</li>
 						<li>City: {this.state.address.city}</li>
 						<li>State: {this.state.address.state}</li>
 						<li>Zip: {this.state.address.zip}</li>
@@ -69,7 +72,8 @@ export default class AddressForm extends React.Component {
 			return (
 				<form className="profileEditor">
 					<ul className="list-unstyled">
-						<li>Street: <input type="text" ref="street"/></li>
+						<li>Street 1: <input type="text" ref="street1"/></li>
+						<li>Street 2: <input type="text" ref="street2"/></li>
 						<li>City: <input type="text" ref="city"/></li>
 						<li>State: <input type="text" ref="state"/></li>
 						<li>Zip: <input type="text" ref="zip"/></li>

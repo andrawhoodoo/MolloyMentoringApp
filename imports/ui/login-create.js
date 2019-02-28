@@ -30,7 +30,7 @@ export default class CreateUser extends React.Component {
 			else {
 
 				// On success, create extended information document in Profiles collection
-				Meteor.call('createProfile', email, fName, lName);
+				Meteor.call('createProfile', fName, lName);
 
 				this.setState({error: ''});
 			}

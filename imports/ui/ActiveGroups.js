@@ -27,8 +27,7 @@ export default class ActiveGroups extends React.Component {
 			return (
 				<tr key={group._id}>
 					<td>{group.name}</td>
-					<td>{group.mentorId}</td>
-					<td>{group.menteeId}</td>
+					<td>{group.description || undefined}</td>
 					<td><a href="#" className="btn btn-danger text-white">Go To Group</a></td>
 				</tr>
 			);
@@ -46,8 +45,7 @@ export default class ActiveGroups extends React.Component {
 							<thead className="thead-dark">
 								<tr>
 									<th>Group Name</th>
-									<th>MentorId</th>
-									<th>MenteeId</th>
+									<th>Description</th>
 									<th></th>
 								</tr>
 							</thead>

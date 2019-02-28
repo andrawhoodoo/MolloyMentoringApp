@@ -29,7 +29,7 @@ export default class Home extends React.Component {
 	}
 	renderWelcome() {
 		return (
-			<h2 className="welcome-name px-3 mb-4">Welcome {this.state.name.first}!</h2>
+			<h1 className="welcome-name px-3 mb-4">Welcome {this.state.name.first}!</h1>
 		);
 	}
     render() {
@@ -44,9 +44,11 @@ export default class Home extends React.Component {
 						<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications} new notifications!</h4>
 					</div>
 					<ActiveGroups />
-					<Link to='/group-search' className='text-white'>
-							<button className='btn btn-danger btn-block'>Search For Groups</button>
-					</Link>
+					<div className="text-center container py-5">
+						<Link to='/group-search' className='text-white'>
+								<button className='btn btn-danger btn-lg'>Search For Groups</button>
+						</Link>
+					</div>
 				</section>
 				<Footer />
 			</div>

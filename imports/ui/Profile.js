@@ -5,6 +5,7 @@ import {Tracker} from 'meteor/tracker';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import AddressForm from './AddressForm';
+import PhoneForm from './PhoneForm';
 import {Profiles} from '../api/profiles';
 
 export default class Profile extends React.Component {
@@ -36,6 +37,7 @@ export default class Profile extends React.Component {
 						{this.renderCustomHeader()}
 						<div className="user-customization px-3 py-4 bg-dark text-white">
 							<AddressForm />
+							<PhoneForm />
 						</div>
 
 					{/*	<div className="settings my-4 px-3">

@@ -31,10 +31,11 @@ export default class GroupSearch extends React.Component {
 	}
 	renderGroupsList() {
 		return this.state.groups.map(group => {
+			const id = group._id;
 			return (
-				<tr key={group._id}>
+				<tr key={id}>
 					<td>{group.name}</td>
-					<td><button className="btn btn-danger" onClick={this.startSearch(group._id).bind(this)}>Look at group</button></td>
+					<td><button className="btn btn-danger" onClick={this.startSearch.bind(this, id)}>Look at group</button></td>
 				</tr>
 			);
 		});

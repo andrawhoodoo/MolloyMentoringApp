@@ -14,7 +14,7 @@ export default class Group extends React.Component {
 	componentDidMount() {
 		this.singleGroupTracker = Tracker.autorun(() => {
 			Meteor.subscribe('groupsData');
-			const myGroup = Groups.find({_id: this.props.id}).fetch();
+			const myGroup = Groups.findOne({_id: this.props.id});
 			this.setState(myGroup ? {group: myGroup} : {group: ''});
 		});
 	}

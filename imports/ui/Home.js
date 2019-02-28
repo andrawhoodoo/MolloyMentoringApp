@@ -44,6 +44,9 @@ export default class Home extends React.Component {
 						<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications} new notifications!</h4>
 					</div>
 					<ActiveGroups />
+					<Link to='/group-search' className='text-white'>
+							<button className='btn btn-danger btn-block'>Search For Groups</button>
+					</Link>
 				</section>
 				<Footer />
 			</div>

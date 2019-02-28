@@ -55,9 +55,6 @@ export default class ActiveGroups extends React.Component {
 								{this.renderActiveGroupsItems()}
 							</tbody>
 						</table>
-						<Link to='/group-search' className='text-white'>
-							<button className='btn btn-danger btn-block'>Search For Groups</button>
-						</Link>
 					</div>
 				</div>
 			</div>

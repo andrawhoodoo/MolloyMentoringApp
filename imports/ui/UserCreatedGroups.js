@@ -14,8 +14,8 @@ export default class UserCreatedGroups extends React.Component {
 	}
 	componentDidMount() {
 		this.groupTracker = Tracker.autorun(() => {
-			Meteor.subscribe('createdGroupsData', Meteor.userId);
-			const groupsArr = Groups.find({adminId: Meteor.userId}).fetch();
+			Meteor.subscribe('createdGroupsData', Meteor.userId());
+			const groupsArr = Groups.find({adminId: Meteor.userId()}).fetch();
 			this.setState({groups: groupsArr});
 		});
 	}
@@ -27,7 +27,7 @@ export default class UserCreatedGroups extends React.Component {
 			return (
 				<tr key={group._id}>
 					<td className="font-weight-bold">{group.name}</td>
-					<td className="font-italic">{group.description || undefined}</td>
+					<td className="font-italic">{group.description}</td>
 					<td><a href="#" className="btn btn-danger text-white">Match New Users!</a></td>
 				</tr>
 			);

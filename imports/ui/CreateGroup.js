@@ -2,7 +2,6 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Link } from 'react-router-dom';
-import shortId
 
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -14,35 +13,32 @@ export default class CreateGroup extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			groupInfo: {
-				groupName: '',
-				surveyId: '',
-				description: ''
-			}
+			surveyId: ''
 		}
 	}
 	componentDidMount() {	
 	}
 	submitGroup(e) {
 		e.preventDefault();
-		this.setState({
-			groupInfo: {
-				groupName: this.refs.groupName.value.trim(),
-				description: this.refs.groupName.value.trim()
-			}
-		});
-		if(this.state.groupInfo.surveyId) {
-			Meteor.call('createGroup', (this.state.groupInfo.groupName, this.state.groupInfo.surveyId, this.state.groupInfo.description));
-		browserHistory.replace('/home');
+		const groupName = this.refs.groupName.value.trim()
+		const description = this.refs.groupDescription.value.trim()
+		if(this.state.surveyId) {
+			console.log(groupName);
+			console.log('break');
+			console.log(this.state.surveyId);
+			console.log('break');
+			console.log(description);
+			Meteor.call('createGroup', groupName, this.state.surveyId, description);
+			browserHistory.replace('/home');
 		}
 		else {
 			throw new Meteor.Error('must first submit a survey before creating a group!');
 		}
 	}
 	submitSurvey(surveyInfo) {
-		e.preventDefault();
-		Meteor.call('addSurvey', (surveyInfo.title, surveyInfo.author, surveyInfo.questions));
-		
+		Meteor.call('addSurvey', (surveyInfo.title, surveyInfo.author, surveyInfo.questions), (err, result) => {
+			this.setState({surveyId: result});
+		});
 	}
 	render() {
 		return (
@@ -53,12 +49,13 @@ export default class CreateGroup extends React.Component {
 					<form>
 						<ul className="list-unstyled">
 							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Name</span></div><input className="form-control" type="text" ref="groupName" /></div></li>
+			
 							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Description</span></div><input className="form-control" type="text" ref="groupDescription" placeholder="(optional)" /></div></li>
 						</ul>
 					</form>
 					<h2>Now Create Your Survey!</h2>
 					<div className="bg-dark text-white">
-						{/*<CreateSurvey />*/}
+						<CreateSurvey submitSurvey={this.submitSurvey.bind(this)} />
 						<button className="btn btn-block btn-danger" onClick={this.submitGroup.bind(this)}>Create Your New Group</button>
 					</div>
 				</div>

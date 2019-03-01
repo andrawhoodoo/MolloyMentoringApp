@@ -14,8 +14,8 @@ export default class UserCreatedGroups extends React.Component {
 	}
 	componentDidMount() {
 		this.groupTracker = Tracker.autorun(() => {
-			Meteor.subscribe('createdGroupsData');
-			const groupsArr = Groups.find().fetch();
+			Meteor.subscribe('createdGroupsData', Meteor.userId);
+			const groupsArr = Groups.find({adminId: Meteor.userId}).fetch();
 			this.setState({groups: groupsArr});
 		});
 	}

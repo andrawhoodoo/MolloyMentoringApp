@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
-import { Surveys } from './surveys';
 
 export const Groups = new Mongo.Collection('Groups');
 
@@ -8,8 +7,8 @@ if(Meteor.isServer) {
 	Meteor.publish('groupsData', function() {
 		return Groups.find({});
 	});
-	Meteor.publish('createdGroupsData', function() {
-		return Groups.find({adminId: this.userId});
+	Meteor.publish('createdGroupsData', function(id) {
+		return Groups.find({adminId: id});
 	});
 }
 
@@ -18,10 +17,11 @@ Meteor.methods({
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
+		console.log(groupName, "my inputs");
 		Groups.insert({
 			name: groupName,
 			surveyId: surveyId,
-			description: description || '',
+			description: description,
 			mentors_pool: '',
 			mentees_pool: '',
 			pairs: '',

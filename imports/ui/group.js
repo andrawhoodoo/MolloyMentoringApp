@@ -47,4 +47,3 @@ export default class Group extends React.Component {
 		);
 	}
 }
-

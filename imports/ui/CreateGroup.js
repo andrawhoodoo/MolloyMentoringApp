@@ -23,11 +23,6 @@ export default class CreateGroup extends React.Component {
 		const groupName = this.refs.groupName.value.trim()
 		const description = this.refs.groupDescription.value.trim()
 		if(this.state.surveyId) {
-			console.log(groupName);
-			console.log('break');
-			console.log(this.state.surveyId);
-			console.log('break');
-			console.log(description);
 			Meteor.call('createGroup', groupName, this.state.surveyId, description);
 			browserHistory.replace('/home');
 		}

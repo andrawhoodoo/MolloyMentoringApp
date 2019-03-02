@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
 import { Groups } from '../api/groups';
+import Survey from './Survey';
 
 export default class Group extends React.Component {
 	constructor(props) {
@@ -22,6 +23,11 @@ export default class Group extends React.Component {
 	componentWillUnmount() {
 		this.singleGroupTracker.stop();
 	}
+	renderSurvey() {
+		return (
+			<Survey surveyId={this.state.group.surveyId} />
+		);
+	}
 	render() {
 		return (
 			<div>
@@ -38,7 +44,7 @@ export default class Group extends React.Component {
 								<li><input type='radio' name='role' value="Mentor" />Mentor</li>
 								<li><input type='radio' name='role' value="Mentee" />Mentee</li>
 							</ul>
-							<button>Take Survey</button>
+							<button onClick={this.renderSurvey.bind(this)}>Take Survey</button>
 							{this.state.error ? <p className='text-danger font-weight-bold'>{this.state.error}</p> : undefined}
 						</div>
 					</div>

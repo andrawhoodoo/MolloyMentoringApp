@@ -15,12 +15,25 @@ export default class ActiveGroups extends React.Component {
 	componentDidMount() {
 		this.groupTracker = Tracker.autorun(() => {
 			Meteor.subscribe('groupsData');
-			const groupsArr = Groups.find().fetch();
+			const menteeGroups = Groups.find({mentees_pool: Meteor.userId()}).fetch();
+			const mentorGroups = Groups.find({mentors_pool: Meteor.userId()}).fetch();
+			const matchedGroups1 = Groups.find({pairs: {mentorId: Meteor.userId()}}).fetch();
+			const matchedGroups2 = Groups.find({pairs: {menteeId: Meteor.userId()}}).fetch();
+			const groupsArr = [];
+			this.pushToArray(groupsArr, menteeGroups);
+			this.pushToArray(groupsArr, mentorGroups);
+			this.pushToArray(groupsArr, matchedGroups1);
+			this.pushToArray(groupsArr, matchedGroups2);
 			this.setState({groups: groupsArr});
 		});
 	}
 	componentWillUnmount() {
 		this.groupTracker.stop();
+	}
+	pushToArray(container, target) {
+		target.forEach(item => {
+			container.push(item);
+		});
 	}
 	renderActiveGroupsItems() {
 		return this.state.groups.map(group => {

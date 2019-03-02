@@ -1,4 +1,8 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { Tracker } from 'meteor/tracker';
+
+import Surveys from '../api/surveys';
 
 export default class Survey extends React.Component {
 	constructor(props) {
@@ -6,6 +10,16 @@ export default class Survey extends React.Component {
 		this.state = {
 			survey: ''
 		}
+	}
+	componentDidMount() {
+		this.surveyTracker = Tracker.autorun(() => {
+			Meteor.subscribe('surveysData');
+			const mySurvey = Surveys.find({_id: this.props.surveyId}).fetch();
+			this.setState(mySurvey ? {survey: mySurvey} : {survey: ''});
+		});
+	}
+	componentWillUnmount() {
+		this.surveyTracker.stop();
 	}
 	renderQuestions() {
 		return(

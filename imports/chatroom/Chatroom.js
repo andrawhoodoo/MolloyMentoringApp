@@ -83,7 +83,14 @@ export default class Chatroom extends React.Component {
         console.error("Error:", error);
       });
   }
-
+  renderMessages() {
+    return this.state.messages.map(message => {
+      <div className='message-group'>
+        <h5>{this.state.username}: </h5>
+        <p>{message}</p>
+      </div>
+    });
+  }
   render() {
     return (
       <div>
@@ -92,7 +99,7 @@ export default class Chatroom extends React.Component {
           Welcome to the Chatroom!
         </h1>
         <div className="container">
-          <div>{this.state.messages}</div>
+          <div>{this.renderMessages()}</div>
           <ChatInput onSend={this.handleSend} />
         </div>
         <Footer />

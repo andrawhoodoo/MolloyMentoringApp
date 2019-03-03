@@ -1,6 +1,7 @@
 import React from "react";
-import NavBar from "../ui/NavBar";
+import NavBar from "../NavBar";
 import Chatroom from "./Chatroom";
+import Footer from '../Footer';
 
 export default class ChatroomLogin extends React.Component {
   constructor(props) {
@@ -43,16 +44,20 @@ export default class ChatroomLogin extends React.Component {
     return (
       <div>
         <NavBar />
-        <div>Welcome to the Public Chatroom</div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.handleChange}
-            placeholder=" Name"
-          />
-          <input type="submit" value="Enter" />
-        </form>
+		<h1 className='text-white py-2 text-center bg-dark'>Welcome to the Public Chatroom</h1>
+		<div className='container'>
+			<h3>Please Enter Your Name Here:</h3>
+			<form onSubmit={this.handleSubmit} className="my-3">
+			  <input
+				type="text"
+				value={this.state.username}
+				onChange={this.handleChange}
+				placeholder=" Name"
+			  />
+			  <input className="btn btn-danger" type="submit" value="Enter" />
+			</form>
+		</div>
+		<Footer />
       </div>
     );
   }

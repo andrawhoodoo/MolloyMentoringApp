@@ -1,5 +1,4 @@
 import React from "react";
-import Messages from "./Messages";
 
 export default class ChatInput extends React.Component {
   constructor(props) {
@@ -21,14 +20,16 @@ export default class ChatInput extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.chatInput}
-          onChange={this.handleChange}
-          placeholder=" Message "
-        />
-        <input type="submit" value="Send" />
+      <form onSubmit={this.handleSubmit} className="my-3">
+        <div className="input-group">
+          <input
+            type="text"
+            value={this.state.chatInput}
+            onChange={this.handleChange}
+            placeholder=" Message "
+          />
+          <input className="btn btn-danger" type="submit" value="Send" />
+        </div>
       </form>
     );
   }

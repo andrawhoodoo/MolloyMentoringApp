@@ -1,15 +1,54 @@
 import React from "react";
-import NavBar from "../ui/NavBar";
-import Messages from "./Messages";
+import { Meteor } from "meteor/meteor";
+import { Tracker } from "meteor/tracker";
+
+import NavBar from "../NavBar";
 import ChatInput from "./ChatInput";
+import Footer from "../Footer";
+import { Profiles } from "../../api/profiles";
 
 export default class Chatroom extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: [] };
+    this.state = {
+      username: "",
+      messages: []
+    };
 
     this.appendMessage = this.appendMessage.bind(this);
     this.handleSend = this.handleSend.bind(this);
+  }
+  componentDidMount() {
+    this.nameTracker = Tracker.autorun(() => {
+      Meteor.subscribe("profileData");
+      const profiles = Profiles.find().fetch();
+      this.setState(
+        profiles[0] ? { username: profiles[0].name.first } : { username: "" }
+      );
+    });
+
+    /*const myInit = {
+      method: "POST",
+      body: { fullMessage },
+      header: { "Content-Type": "application/json" }
+    };
+    const myRequest = new Request("http://localhost:8000/", myInit);
+    fetch(myRequest)
+      .then(response => {
+        return response.body;
+        //this.appendMessage(response.body);
+      })
+      .then(data => {
+        console.log(JSON.stringify(data));
+        this.appendMessage(JSON.stringify(data));
+        console.log(this.state.messages);
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });*/
+  }
+  componentWillUnmount() {
+    this.nameTracker.stop();
   }
 
   appendMessage(message) {
@@ -17,25 +56,30 @@ export default class Chatroom extends React.Component {
       messages: this.state.messages.concat(message)
     });
   }
+
   handleSend(message) {
-    const fullMessage = {
-      username: this.props.username,
-      message
-    };
-    const messagesDummy = this.props.messages;
+    const fullMessage = { fullMessage: this.state.username + ": " + message };
     const myInit = {
       method: "POST",
-      body: JSON.stringify(messagesDummy),
-      headers: {
-        "Content-Type": "application/json"
+      body: JSON.stringify(fullMessage),
+      header: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+        "Access-Control-Allow-Origin": "*",
+        "Accept-Encoding": "gzip"
       }
     };
-    const myRequest = new Request("http://localhost:3000/?#", myInit);
+    const myRequest = new Request("http://localhost:8000/", myInit);
+
     fetch(myRequest)
-      .then(() => {
-        this.appendMessage(fullMessage);
+      .then(response => {
+        return response.json();
       })
-      .then(() => {
+      .then(data => {
+        console.log(data.fullMessage);
+        console.log(JSON.stringify(data));
+        this.appendMessage(JSON.stringify(data.fullMessage));
+        //this.appendMessage(JSON.stringify(data));
         console.log(this.state.messages);
       })
       .catch(error => {
@@ -47,9 +91,14 @@ export default class Chatroom extends React.Component {
     return (
       <div>
         <NavBar />
-        <div>Welcome {this.props.username}</div>
-        <ChatInput onSend={this.handleSend} />
-        <Messages messages={this.state.messages} />
+        <h1 className="text-white bg-dark text-left px-5 py-2">
+          Welcome to the Chatroom!
+        </h1>
+        <div className="container">
+          <div>{this.state.messages}</div>
+          <ChatInput onSend={this.handleSend} />
+        </div>
+        <Footer />
       </div>
     );
   }

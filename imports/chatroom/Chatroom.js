@@ -85,10 +85,12 @@ export default class Chatroom extends React.Component {
   }
   renderMessages() {
     return this.state.messages.map(message => {
-      <div className='message-group'>
-        <h5>{this.state.username}: </h5>
-        <p>{message}</p>
-      </div>
+      return (
+        <div className='message-group'>
+          <h5>{this.state.username}: </h5>
+          <p>{message}</p>
+        </div>
+      );
     });
   }
   render() {

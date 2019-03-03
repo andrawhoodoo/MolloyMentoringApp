@@ -10,7 +10,8 @@ export default class Group extends React.Component {
 		super(props);
 		this.state = {
 			group: '',
-			error: ''
+			error: '',
+			isTakingSurvey: false
 		}
 	}
 	componentDidMount() {
@@ -23,33 +24,57 @@ export default class Group extends React.Component {
 	componentWillUnmount() {
 		this.singleGroupTracker.stop();
 	}
-	renderSurvey() {
-		return (
-			<Survey surveyId={this.state.group.surveyId} />
-		);
+	takeSurvey() {
+		this.setState({isTakingSurvey: true});
 	}
 	render() {
-		return (
-			<div>
-				<h1 className="font-weight-bold bg-dark text-white px-5 py-2">Group Discovery</h1>
-				<div className="container">
-					<div className="card mt-5">
-						<div className="card-header">
-							<h2>{this.state.group.name}</h2>
-							{this.state.group &&  this.state.group.description ? <p className="lead font-italic">{this.state.group.description}</p> : undefined}
+		if(this.state.isTakingSurvey) {
+			return (
+				<div>
+					<h1 className="font-weight-bold bg-dark text-white px-5 py-2">Group Discovery</h1>
+					<div className="container">
+						<div className="card mt-5">
+							<div className="card-header">
+								<h2>{this.state.group.name}</h2>
+								{this.state.group &&  this.state.group.description ? <p className="lead font-italic">{this.state.group.description}</p> : undefined}
+							</div>
+							<div className="card-body">
+								<p>Want to join? Pick a role & take the survey!</p>
+								<ul className='list-unstyled'>
+									<li><input type='radio' name='role' value="Mentor" />Mentor</li>
+									<li><input type='radio' name='role' value="Mentee" />Mentee</li>
+								</ul>
+							</div>
 						</div>
-						<div className="card-body">
-							<p>Want to join? Pick a role & take the survey!</p>
-							<ul className='list-unstyled'>
-								<li><input type='radio' name='role' value="Mentor" />Mentor</li>
-								<li><input type='radio' name='role' value="Mentee" />Mentee</li>
-							</ul>
-							<button onClick={this.renderSurvey.bind(this)}>Take Survey</button>
-							{this.state.error ? <p className='text-danger font-weight-bold'>{this.state.error}</p> : undefined}
+						<Survey surveyId={this.state.group.surveyId} />
+					</div>
+				</div>
+				
+			);
+		}
+		else {
+			return (
+				<div>
+					<h1 className="font-weight-bold bg-dark text-white px-5 py-2">Group Discovery</h1>
+					<div className="container">
+						<div className="card mt-5">
+							<div className="card-header">
+								<h2>{this.state.group.name}</h2>
+								{this.state.group &&  this.state.group.description ? <p className="lead font-italic">{this.state.group.description}</p> : undefined}
+							</div>
+							<div className="card-body">
+								<p>Want to join? Pick a role & take the survey!</p>
+								<ul className='list-unstyled'>
+									<li><input type='radio' name='role' value="Mentor" />Mentor</li>
+									<li><input type='radio' name='role' value="Mentee" />Mentee</li>
+								</ul>
+								<button onClick={this.takeSurvey.bind(this)}>Take Survey</button>
+								{this.state.error ? <p className='text-danger font-weight-bold'>{this.state.error}</p> : undefined}
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		);
+			);
+		}
 	}
 }

@@ -65,8 +65,7 @@ export default class Chatroom extends React.Component {
       header: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": true,
-        "Access-Control-Allow-Origin": "*",
-        "Accept-Encoding": "gzip"
+        "Access-Control-Allow-Origin": "*"
       }
     };
     const myRequest = new Request("http://localhost:8000/", myInit);
@@ -77,9 +76,7 @@ export default class Chatroom extends React.Component {
       })
       .then(data => {
         console.log(data.fullMessage);
-        console.log(JSON.stringify(data));
-        this.appendMessage(JSON.stringify(data.fullMessage));
-        //this.appendMessage(JSON.stringify(data));
+        this.appendMessage(data.fullMessage);
         console.log(this.state.messages);
       })
       .catch(error => {

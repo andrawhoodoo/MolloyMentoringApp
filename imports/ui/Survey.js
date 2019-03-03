@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 
-import Surveys from '../api/surveys';
+import { Surveys } from '../api/surveys';
 
 export default class Survey extends React.Component {
 	constructor(props) {

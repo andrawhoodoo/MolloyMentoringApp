@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 
 import { Groups } from './groups';
+import { Notifications } from './notifications';
 
 export const MentorPairs = new Mongo.Collection('MentorPairs');
 
@@ -32,6 +33,16 @@ Meteor.methods({
 		MentorPairs.insert({
 			MentorId: mentor,
 			MenteeId: mentee
+		});
+		Notifications.insert({
+			userId: mentor,
+			type: 'pairing',
+			data: mentee
+		});
+		Notifications.insert({
+			userId: mentee,
+			type: 'pairing',
+			data: mentor
 		});
 	}
 });

@@ -9,16 +9,22 @@ import Footer from './Footer';
 import ActiveGroups from './ActiveGroups';
 import UserCreatedGroups from './UserCreatedGroups';
 import { Profiles } from '../api/profiles';
+import { Notifications } from '../api/notifications';
 
 export default class Home extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			name: '',
-			notifications: 0
+			notifications: []
 		}
 	}
 	componentDidMount() {
+		this.notificationsTracker = Tracker.autorun(() => {
+			Meteor.subscribe('notificationsData');
+			const notifications = Notifications.find().fetch();
+			this.setState(notifications[0] ? {notifications: notifications} : {notifications: []});
+		});
 		this.profileTracker = Tracker.autorun(() => {
 			Meteor.subscribe('profileData');
 			const profile = Profiles.find().fetch();
@@ -42,7 +48,7 @@ export default class Home extends React.Component {
 						{this.renderWelcome()}
 					</div>
 					<div className="notifications bg-dark text-white p-3 mb-4">
-						<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications} new notifications!</h4>
+						<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications.length} new notifications!</h4>
 					</div>
 					<ActiveGroups />
 					<UserCreatedGroups />

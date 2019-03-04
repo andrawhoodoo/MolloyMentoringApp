@@ -1,24 +1,26 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Groups } from '../api.groups';
+import { Groups } from '../api/groups';
 import { Scores } from '../api/scores';
-import { MentorPairs } from '../api/mentorPairs';
+import { MentorPairs } from '../api/mentorpairs';
 
 Meteor.subscribe('scoresData');
 Meteor.subscribe('groupsData');
 
-export default const pair = groupId => {
+export const pair = groupId => {
   const myGroup = Groups.findOne({_id: groupId});
   const surveyId = myGroup.surveyId;
   const ara = Scores.find({surveyId: surveyId}).fetch();
 
   let addToSepArray = (pull,pullFor,arr) => {
     for(let i = 0; i<pull.length; i++) {
-      if(pull[i].pullFor != (for(let j = 0; j<pull.length; j++){return arr[j]})){
-        arr.push(pull[i].pullFor)
+      for(let j = 0; j < pull.length; j++){
+		if(arr[j] !== pull[i].pullFor) {
+        	arr.push(pull[i].pullFor);
+      	}
       }
-    }
-  };
+	}
+  }
 
   const mentees = [];
   const mentors = [];

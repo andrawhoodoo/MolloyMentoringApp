@@ -4,8 +4,8 @@ import { Tracker } from 'meteor/tracker';
 import { Link } from 'react-router-dom';
 
 import { Groups } from '../api/groups';
-import Pair from '../Algorithm/pairingAlgo';
-import scoreAnswers from '../Algorithm/Score';
+import { pair } from '../Algorithim/pairingAlgo';
+import { scoreGroupMembers } from '../Algorithim/Score';
 
 export default class UserCreatedGroups extends React.Component {
 	constructor(props) {
@@ -25,8 +25,8 @@ export default class UserCreatedGroups extends React.Component {
 		this.groupTracker.stop();
 	}
 	runPairs(id) {
-		scoreAnswers(id);
-		Pair(id);
+		scoreGroupMembers(id);
+		pair(id);
 	}
 	renderActiveGroupsItems() {
 		return this.state.groups.map(group => {

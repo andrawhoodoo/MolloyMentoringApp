@@ -15,27 +15,23 @@ export const foo = groupId => {
   const myGroup = Groups.findOne({_id: groupId});
   const surveyId = myGroup.surveyId;
   const ara = Scores.find({surveyId: surveyId}).fetch();
-
   let addToSepArray = (pull,pullFor,arr) => {
     for(let i = 0; i<pull.length; i++) {
-      for(let j = 0; j < pull.length; j++){
-		if(arr[j] !== pull[i].pullFor) {
-        	arr.push(pull[i].pullFor);
-      	}
+      if(arr.indexOf(pull[i][pullFor]) == -1){
+        arr.push(pull[i][pullFor]);
       }
-	}
-  }
-
+    }
+  };
+  
   const mentees = [];
   const mentors = [];
-  addToSepArray(ara,mentee,mentees);
-  addToSepArray(ara,mentor,mentors);
+  addToSepArray(ara,"mentee",mentees);
+  addToSepArray(ara,"mentor",mentors);
 
-  let memo = new Map();
   let ara1 = new Map();
 
   let fillMap = (arr,map) =>{
-    for(let i = 0; i<arr.length-1; i++){
+    for(let i = 0; i<arr.length; i++){
       map.set((arr[i].mentor + arr[i].mentee), arr[i].score)
     }
   };
@@ -45,16 +41,17 @@ export const foo = groupId => {
   let getScore = (map, mentor, mentee) =>{
     return map.get(mentor+mentee)
   };
-
+  
   let subArray = (index, arr) => {
     let acc = [];
-    for(let i = 0; i < mentors.length; i++){
+    for(let i = 0; i < arr.length; i++){
       if(i != index){
-        acc.push(mentors[i])
+        acc.push(arr[i])
       }
     }
     return acc
   };
+
 
   let getArrayScore = (arr) =>{
     let acc = 0;
@@ -64,6 +61,7 @@ export const foo = groupId => {
     return acc
   };
 
+
   let maxArray = (arr1,arr2) =>{
     if(getArrayScore(arr1) > getArrayScore(arr2)){
       return arr1
@@ -71,18 +69,18 @@ export const foo = groupId => {
     else return arr2
   };
 
+
   let findBestPairs = (mentors,indexM,mentees,mapOfScores) =>{
     let makeTable = (index,acc) => {
-      if(index < mentors.length){
-        if(memo.has(indexM)){return memo.get(indexM)}
-        else{ memo.set(indexM,
-        makeTable(index+1, maxArray(bestPairs(mentors,indexM+1, subArray(index,mentees)).concat({mentor:mentor[indexM], mentee:mentee[index], score:getScore(mapOfScores,mentor[indexM],mentee[index])}), acc)))
-        return memo.get(indexM)
+      if(indexM < mentors.length){
+        if(index < mentees.length){
+          return makeTable(index+1, maxArray(findBestPairs(mentors,indexM+1, subArray(index,mentees),mapOfScores).concat([{mentor:mentors[indexM], mentee:mentees[index], score:getScore(mapOfScores,mentors[indexM],mentees[index])}]), acc))
         }
+        else return acc
       }
       else return acc
-    }
-    makeTable(0,[])
+    };
+    return makeTable(0,[])
   };
 
   let writeToDB = (arr) => {

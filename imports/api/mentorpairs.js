@@ -1,7 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 
-export const MentorPairs = new Mongo.Collection('MentorPairs');
+import { Groups } from './groups';
 
+export const MentorPairs = new Mongo.Collection('MentorPairs');
 
 if(Meteor.isServer) {
 	Meteor.publish('MentorPairsData', function() {
@@ -10,16 +11,27 @@ if(Meteor.isServer) {
 }
 
 Meteor.methods({
-	'createPair': function(mentor) {
+	'createPair': function(mentor, mentee, groupId) {
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
-		Groups.insert({
-			name: groupName,
-			surveyId: surveyId,
-			mentors_pool: '',
-			mentees_pool: '',
-			pairs: ''
-		})
+		const pairs = Groups.find({_id: groupId}).pairs;
+		const addedPair = pairs.push([mentor, mentee]);
+		Groups.update({
+				_id: groupId
+			}, {
+				$set: {
+					pairs: addedPair
+				},
+				$pull: {
+					mentors_pool: mentor,
+					mentees_pool: mentee
+				}	
+			}
+		);
+		MentorPairs.insert({
+			MentorId: mentor,
+			MenteeId: mentee
+		});
 	}
-})
+});

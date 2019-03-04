@@ -31,8 +31,23 @@ export default class CreateGroup extends React.Component {
 		}
 	}
 	submitSurvey(surveyInfo) {
-		Meteor.call('addSurvey', (surveyInfo.title, surveyInfo.author, surveyInfo.questions), (err, result) => {
-			this.setState({surveyId: result});
+		const myArr = [];
+		const qArr = [];
+		Meteor.call('addOption', 'This is option 1', (err, result) => {
+			myArr.push(result);
+			console.log(myArr)
+			Meteor.call('addOption', 'This is option 2', (err, result) => {
+				myArr.push(result);
+				console.log(myArr);
+				Meteor.call('addQuestion', 'This is my question', myArr, 'limit', (err, result) => {
+					qArr.push(result);	
+					console.log(qArr);
+					Meteor.call('addSurvey', 'MySurvey', qArr, (err, result) => {
+						this.setState({surveyId: result});
+						console.log(this.state)
+					});
+				});
+			});
 		});
 	}
 	render() {

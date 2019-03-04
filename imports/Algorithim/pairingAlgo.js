@@ -8,6 +8,10 @@ Meteor.subscribe('scoresData');
 Meteor.subscribe('groupsData');
 
 export const pair = groupId => {
+	return 'foo';
+}
+
+export const foo = groupId => {
   const myGroup = Groups.findOne({_id: groupId});
   const surveyId = myGroup.surveyId;
   const ara = Scores.find({surveyId: surveyId}).fetch();

@@ -10,8 +10,9 @@ if(Meteor.isServer){
 
 Meteor.methods({
   'addOption': function(text) {
-    Options.insert({
+    const id = Options.insert({
       text: text
     });
+	return id;
   }
 });

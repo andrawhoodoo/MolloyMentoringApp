@@ -17,7 +17,7 @@ export default class Survey extends React.Component {
 	componentDidMount() {
 		this.surveyTracker = Tracker.autorun(() => {
 			Meteor.subscribe('surveysData');
-			const mySurvey = Surveys.find({_id: this.props.surveyId}).fetch();
+			const mySurvey = Surveys.findOne({_id: this.props.surveyId});
 			this.setState(mySurvey ? {survey: mySurvey} : {survey: ''});
 		});
 	}
@@ -25,27 +25,40 @@ export default class Survey extends React.Component {
 		this.surveyTracker.stop();
 	}
 	renderQuestions() {
-		return this.state.survey.questions.map(questionId => {
-			Meteor.subscribe('questionsData');
-			const myQuestion = Questions.findOne({_id: questionId});
-			return (
-				<div key={questionId}>
-					<p>{myQuestion.text}</p>
-					<ul>
-					{this.renderOptions(myQuestion)}
-					</ul>
-				</div>
-			);
-		});
+		console.log(this.state.survey.questions);
+		if(this.state.survey) {
+			return this.state.survey.questions.map(questionId => {
+				Meteor.subscribe('questionsData');
+				const myQuestion = Questions.findOne({_id: questionId});
+				if(myQuestion) {
+					return (
+						<div key={questionId}>
+							<p>{myQuestion.text}</p>
+							<ol>
+							{this.renderOptions(myQuestion)}
+							</ol>
+						</div>
+					);
+				}
+			});
+		} 
+		
+		
 	}
 	renderOptions(question) {
 		return question.options.map(optionId => {
 			Meteor.subscribe('optionsData');
 			const myOption = Options.findOne({_id: optionId});
-			return (
-				<li><input type ="radio" value={optionId} />{myOption.text}</li>
-			);
+			if(myOption) {
+				return (
+					<li key={optionId}><input type ="radio" value={optionId} />{myOption.text}</li>
+				);
+			}
+			
 		});
+	}
+	submitSurvey() {
+		return 'foo'
 	}
 	render() {
 		return (

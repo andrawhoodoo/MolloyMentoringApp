@@ -25,6 +25,8 @@ export default class Group extends React.Component {
 		this.singleGroupTracker.stop();
 	}
 	takeSurvey() {
+		console.log(this.state.group)
+		console.log(this.state.group.surveyId)
 		this.setState({isTakingSurvey: true});
 	}
 	render() {

@@ -11,10 +11,12 @@ if(Meteor.isServer){
 
 Meteor.methods({
   'addQuestion': function(text, options, limit) {
-    Questions.insert({
+    const id = Questions.insert({
       text: text,
       options: options,
       limit: 1 //For future implementation: how many selections per question
     });
+	  console.log(options);
+	return id;
   }
 });

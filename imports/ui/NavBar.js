@@ -34,6 +34,7 @@ export default class NavBar extends React.Component {
                 </Link>
               </button>
             </li>
+			{/*
             <li className="nav-item">
               <button className="btn btn-sm btn-dark mx-1">
                 <Link className="text-white" to="/surveys">
@@ -41,6 +42,7 @@ export default class NavBar extends React.Component {
                 </Link>
               </button>
             </li>
+			*/}
             <li className="nav-item">
               <button className="btn btn-sm btn-dark mx-1">
                 <Link className="text-white" to="/Chatroom">

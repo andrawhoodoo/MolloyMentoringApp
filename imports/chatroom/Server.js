@@ -1,4 +1,4 @@
-/*const http = require("http");
+const http = require("http");
 const Router = require("./router");
 
 const messages = [];
@@ -16,26 +16,32 @@ http
   .createServer((request, response) => {
     console.log("ServerPotato" + counter++);
     const requestURL = request.url;
+    console.log(request.url);
 
     response.writeHead(200, header);
 
     let resolved = router.resolve(this, request);
     router.add("POST", requestURL, async request => {
-      if (requestURL == "/GETMESSAGE") {
-        console.log("GETTTTTTTTTMESSSSAGEEE");
-      } else if (requestURL == "/MESSAGE") {
+      if (requestURL == "/MESSAGE") {
         console.log("MESSSSSSSSSSSSSSsAGE");
         request.on("data", chunk => {
           messages.push(chunk);
           console.log("INSIDEREQUESTDATA");
+        });
+      } else if (requestURL == "/GETMESSAGE") {
+        console.log("GETTTTTTTTTMESSSSAGEEE");
+        if ((messages[0] = undefined)) {
+          console.log("NO MESSAGES YET");
+        } else {
           console.log(messages[0] + "message1");
           response.end(messages[0]);
-        });
+        }
       } else {
         console.log("fail");
       }
     });
 
+    console.log(messages);
     if (resolved) {
       resolved
         .catch(error => {
@@ -53,10 +59,8 @@ http
   .listen(8000);
 console.log("Listening PORT:8000");
 
-*/
-
 // WORKING ITERATION
-
+/*
 const http = require("http");
 const Router = require("./router");
 
@@ -92,3 +96,4 @@ http
   })
   .listen(8000);
 console.log("Listening PORT:8000");
+*/

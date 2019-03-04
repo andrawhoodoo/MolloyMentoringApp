@@ -51,7 +51,6 @@ export default class Chatroom extends React.Component {
         this.appendMessage(data.fullMessage);
         console.log(this.state.messages);
       })
-      .then(fetch(myRequest))
       .catch(error => {
         console.error("Error:", error);
       });
@@ -79,9 +78,21 @@ export default class Chatroom extends React.Component {
     };
     const myRequest = new Request("http://localhost:8000/" + "MESSAGE", myInit);
 
-    fetch(myRequest)
+    /*fetch(myRequest)
       .then(() => {
         console.log("Message Sent to Server");
+      })
+      .catch(error => {
+        console.error("Error:", error);
+      });*/
+    fetch(myRequest)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data.fullMessage);
+        this.appendMessage(data.fullMessage);
+        console.log(this.state.messages);
       })
       .catch(error => {
         console.error("Error:", error);

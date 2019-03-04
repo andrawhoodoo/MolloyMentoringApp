@@ -14,7 +14,7 @@ const router = new Router();
 
 http
   .createServer((request, response) => {
-    let resolved = router.resolve(this, request);
+    let resolved = router.resolve(this, { request, response });
     //console.log("ServerPotato" + counter++);
     //console.log(request.url);
     //console.log(messages);
@@ -25,8 +25,12 @@ http
         return { body: String(error), status: 500 };
       });
     } else {
-      response.writeHead(200, header);
-      response.end("hello");
+      for (i = 0; i < messages.length; i++) {
+        response.writeHead(200, header);
+        console.log(clientList[1]);
+        console.log(messages[i]);
+        response.end(messages[i]);
+      }
     }
 
     //console.log("ServerPotato" + counter);
@@ -37,29 +41,17 @@ console.log("Listening PORT:8000");
 const getMessageURL = "/GETMESSAGE";
 const messageURL = "/MESSAGE";
 
-router.add("POST", getMessageURL, (http, requestURL, request) => {
-  if (requestURL == "/GETMESSAGE") {
-    console.log("GETTTTTTTTTMESSSSAGEEE");
-    if ((messages[0] = undefined)) {
-      console.log("NO MESSAGES YET");
-    } else {
-      console.log(messages[0] + "message1");
-    }
-  } else {
-    console.log("GET MESSAGE FAIL");
-  }
+router.add("POST", getMessageURL, (http, requestURL, { request, response }) => {
+  console.log(request.url);
+  clientList.push({ request, response });
 });
 
-router.add("POST", messageURL, (http, requestURL, request) => {
-  if (requestURL == "/MESSAGE") {
-    console.log("MESSSSSSSSSSSSSSsAGE");
-    request.on("data", chunk => {
-      messages.push(chunk);
-      console.log("INSIDEREQUESTDATA");
-    });
-  } else {
-    console.log("MESSAGE FAIL");
-  }
+router.add("POST", messageURL, (http, requestURL, { request, response }) => {
+  console.log(request.url);
+  request.on("data", chunk => {
+    messages.push(chunk);
+    console.log("INSIDEREQUESTDATA");
+  });
 });
 
 // WORKING ITERATION

@@ -10,14 +10,15 @@ if(Meteor.isServer) {
 }
 
 Meteor.methods({
-	'addScore': function(mentor, mentee, score) {
+	'addScore': function(mentor, mentee, surveyId, score) {
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
 		Scores.insert({
 			mentor: mentor,
-      mentee: mentee,
-      score: score
+      		mentee: mentee,
+			surveyId: surveyId,
+      		score: score
 		})
 	}
-})
+});

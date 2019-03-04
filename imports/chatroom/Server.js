@@ -14,50 +14,53 @@ const router = new Router();
 
 http
   .createServer((request, response) => {
-    console.log("ServerPotato" + counter++);
-    const requestURL = request.url;
-    console.log(request.url);
-
-    response.writeHead(200, header);
-
     let resolved = router.resolve(this, request);
-    router.add("POST", requestURL, async request => {
-      if (requestURL == "/MESSAGE") {
-        console.log("MESSSSSSSSSSSSSSsAGE");
-        request.on("data", chunk => {
-          messages.push(chunk);
-          console.log("INSIDEREQUESTDATA");
-        });
-      } else if (requestURL == "/GETMESSAGE") {
-        console.log("GETTTTTTTTTMESSSSAGEEE");
-        if ((messages[0] = undefined)) {
-          console.log("NO MESSAGES YET");
-        } else {
-          console.log(messages[0] + "message1");
-          response.end(messages[0]);
-        }
-      } else {
-        console.log("fail");
-      }
-    });
+    //console.log("ServerPotato" + counter++);
+    //console.log(request.url);
+    //console.log(messages);
 
-    console.log(messages);
     if (resolved) {
-      resolved
-        .catch(error => {
-          if (error.status != null) return error;
-          return { body: String(error), status: 500 };
-        })
-        .then(console.log("potatototoatospotasotpaopt"));
+      resolved.catch(error => {
+        if (error.status != null) return error;
+        return { body: String(error), status: 500 };
+      });
+    } else {
+      response.writeHead(200, header);
+      response.end("hello");
     }
 
-    //console.log(requestURL);
-    //console.log(request.method); // *** COMPArE IN ROUTER ***
-
-    console.log("ServerPotato" + counter);
+    //console.log("ServerPotato" + counter);
   })
   .listen(8000);
 console.log("Listening PORT:8000");
+
+const getMessageURL = "/GETMESSAGE";
+const messageURL = "/MESSAGE";
+
+router.add("POST", getMessageURL, (http, requestURL, request) => {
+  if (requestURL == "/GETMESSAGE") {
+    console.log("GETTTTTTTTTMESSSSAGEEE");
+    if ((messages[0] = undefined)) {
+      console.log("NO MESSAGES YET");
+    } else {
+      console.log(messages[0] + "message1");
+    }
+  } else {
+    console.log("GET MESSAGE FAIL");
+  }
+});
+
+router.add("POST", messageURL, (http, requestURL, request) => {
+  if (requestURL == "/MESSAGE") {
+    console.log("MESSSSSSSSSSSSSSsAGE");
+    request.on("data", chunk => {
+      messages.push(chunk);
+      console.log("INSIDEREQUESTDATA");
+    });
+  } else {
+    console.log("MESSAGE FAIL");
+  }
+});
 
 // WORKING ITERATION
 /*

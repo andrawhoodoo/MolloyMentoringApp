@@ -27,5 +27,25 @@ Meteor.methods({
 			pairs: '',
 			adminId: this.userId
 		});
+	},
+	'addToMentorPool': function(groupId) {
+		if(!this.userId) {
+			throw new Meteor.Error('not-authorized');
+		}
+		Groups.update({
+			_id: groupId
+		}, {
+			$push: { mentors_pool: this.userId}
+		});
+	},
+	'addToMenteesPool': function(groupId) {
+		if(!this.userId) {
+			throw new Meteor.Error('not-authorized');
+		}
+		Groups.update({
+			_id: groupId
+		}, {
+			$push: { mentees_pool: this.userId}
+		});
 	}
-})
+});

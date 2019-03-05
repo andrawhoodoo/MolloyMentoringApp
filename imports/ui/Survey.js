@@ -64,12 +64,12 @@ export default class Survey extends React.Component {
 
 	submitSurvey(e) {
 		e.preventDefault();
-		const userId = Meteor.userId();
 		const target = event.target.form;
 		// TODO: Insert FOR loop to cycle through all questions.
 		//			For now, assigning variables manually
 		let qCounter = 1;
 		let qOrder = "q" + qCounter;
+		let roleInputs = document.getElementsByName('role');
 		let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionId");
 		let selectionId = eval("target." + questionId + ".value");
 		// Feedback for testing
@@ -77,7 +77,7 @@ export default class Survey extends React.Component {
 		console.log("Selection ID: " + selectionId);
 		// Write data to Answers DB
 		Meteor.subscribe('answersData');
-		Meteor.call('addAnswer',userId, questionId, selectionId);
+		Meteor.call('addAnswer', this.props.surveyId, questionId, selectionId);
 	}
 
 	render() {
@@ -86,6 +86,11 @@ export default class Survey extends React.Component {
 				<section>
 					<h3> Mentoring App Survey </h3>
 					<form>
+						<h5>Which role would you like to have for this group?</h5>
+						<ul className='list-unstyled'>
+							<li><input type='radio' name='role' value="Mentor" />Mentor</li>
+							<li><input type='radio' name='role' value="Mentee" />Mentee</li>
+						</ul>
 						{this.renderQuestions()}
 						<button className='btn btn-danger text-white' onClick={this.submitSurvey.bind(this)}>Submit Your Answers</button>
 					</form>

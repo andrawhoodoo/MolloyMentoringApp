@@ -11,9 +11,10 @@ if(Meteor.isServer){
 }
 
 Meteor.methods({
-  'addAnswer': function(userid, questionid, selections) {
+  'addAnswer': function(surveyId, questionid, selections) {
     Answers.insert({
-      userId: userid,
+      userId: this.userid,
+	  surveyId: surveyId,
       questionId: questionid,
       selections: selections
     });

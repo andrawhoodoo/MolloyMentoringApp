@@ -41,14 +41,9 @@ export default class Group extends React.Component {
 								{this.state.group &&  this.state.group.description ? <p className="lead font-italic">{this.state.group.description}</p> : undefined}
 							</div>
 							<div className="card-body">
-								<p>Want to join? Pick a role & take the survey!</p>
-								<ul className='list-unstyled'>
-									<li><input type='radio' name='role' value="Mentor" />Mentor</li>
-									<li><input type='radio' name='role' value="Mentee" />Mentee</li>
-								</ul>
+								<Survey surveyId={this.state.group.surveyId} />
 							</div>
 						</div>
-						<Survey surveyId={this.state.group.surveyId} />
 					</div>
 				</div>
 				
@@ -66,10 +61,6 @@ export default class Group extends React.Component {
 							</div>
 							<div className="card-body">
 								<p>Want to join? Pick a role & take the survey!</p>
-								<ul className='list-unstyled'>
-									<li><input type='radio' name='role' value="Mentor" />Mentor</li>
-									<li><input type='radio' name='role' value="Mentee" />Mentee</li>
-								</ul>
 								<button onClick={this.takeSurvey.bind(this)}>Take Survey</button>
 								{this.state.error ? <p className='text-danger font-weight-bold'>{this.state.error}</p> : undefined}
 							</div>

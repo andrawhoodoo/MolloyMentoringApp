@@ -27,12 +27,15 @@ export default class Survey extends React.Component {
 	renderQuestions() {
 		console.log(this.state.survey.questions);
 		if(this.state.survey) {
+			let qCounter = 0
 			return this.state.survey.questions.map(questionId => {
+				qCounter = qCounter + 1;
+				let qOrder = "q" + qCounter;
 				Meteor.subscribe('questionsData');
 				const myQuestion = Questions.findOne({_id: questionId});
 				if(myQuestion) {
 					return (
-						<div key={questionId}>
+						<div name={qOrder} questionId={questionId}>
 							<p>{myQuestion.text}</p>
 							<ol>
 							{this.renderOptions(myQuestion)}
@@ -41,25 +44,42 @@ export default class Survey extends React.Component {
 					);
 				}
 			});
-		} 
-		
-		
+		}
+
+
 	}
 	renderOptions(question) {
+		const questionId = question._id;
 		return question.options.map(optionId => {
 			Meteor.subscribe('optionsData');
 			const myOption = Options.findOne({_id: optionId});
 			if(myOption) {
 				return (
-					<li key={optionId}><input type ="radio" value={optionId} />{myOption.text}</li>
+					<li><input type ="radio" name={questionId} value={optionId} />{myOption.text}</li>
 				);
+
 			}
-			
 		});
 	}
-	submitSurvey() {
-		return 'foo'
+
+	submitSurvey(e) {
+		e.preventDefault();
+		const userId = Meteor.userId();
+		const target = event.target.form;
+		// TODO: Insert FOR loop to cycle through all questions.
+		//			For now, assigning variables manually
+		let qCounter = 1;
+		let qOrder = "q" + qCounter;
+		let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionId");
+		let selectionId = eval("target." + questionId + ".value");
+		// Feedback for testing
+		console.log("Question #" + qCounter + ": " + questionId);
+		console.log("Selection ID: " + selectionId);
+		// Write data to Answers DB
+		Meteor.subscribe('answersData');
+		Meteor.call('addAnswer',userId, questionId, selectionId);
 	}
+
 	render() {
 		return (
 			<div>

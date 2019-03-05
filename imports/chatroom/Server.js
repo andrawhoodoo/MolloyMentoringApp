@@ -4,7 +4,7 @@ const Router = require("./router");
 const messages = [];
 const clientList = [];
 const header = {
-  "Content-Type": "application/json",
+  "Content-Type": "text/plain",
   "Access-Control-Allow-Credentials": true,
   "Access-Control-Allow-Origin": "*"
 };
@@ -25,14 +25,13 @@ http
         return { body: String(error), status: 500 };
       });
     } else {
-      for (i = 0; i < messages.length; i++) {
-        response.writeHead(200, header);
-        console.log(clientList[1]);
-        console.log(messages[i]);
-        response.end(messages[i]);
-      }
-    }
+      response.writeHead(200, header);
+      console.log(messages);
 
+      response.write(JSON.stringify(messages));
+    }
+    response.writeHead(200, header);
+    response.end();
     //console.log("ServerPotato" + counter);
   })
   .listen(8000);
@@ -40,6 +39,7 @@ console.log("Listening PORT:8000");
 
 const getMessageURL = "/GETMESSAGE";
 const messageURL = "/MESSAGE";
+let message = "";
 
 router.add("POST", getMessageURL, (http, requestURL, { request, response }) => {
   console.log(request.url);
@@ -48,10 +48,15 @@ router.add("POST", getMessageURL, (http, requestURL, { request, response }) => {
 
 router.add("POST", messageURL, (http, requestURL, { request, response }) => {
   console.log(request.url);
-  request.on("data", chunk => {
-    messages.push(chunk);
-    console.log("INSIDEREQUESTDATA");
-  });
+  request
+    .on("data", chunk => {
+      message += chunk;
+      console.log("INSIDEREQUESTDATA");
+    })
+    .on("end", chunk => {
+      messages.push(JSON.parse(message));
+      message = "";
+    });
 });
 
 // WORKING ITERATION

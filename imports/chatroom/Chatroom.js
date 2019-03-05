@@ -41,11 +41,10 @@ export default class Chatroom extends React.Component {
       myInit
     );
 
-    fetch(myRequest)
-      .then(response => {
-        return response.json();
-        // console.log("Succes");
-      })
+    fetch(myRequest).then(response => {
+      //return response.json();
+      console.log("Succes");
+    }); /*
       .then(data => {
         console.log(data.fullMessage);
         this.appendMessage(data.fullMessage);
@@ -53,7 +52,7 @@ export default class Chatroom extends React.Component {
       })
       .catch(error => {
         console.error("Error:", error);
-      });
+      });*/
   }
   componentWillUnmount() {
     this.nameTracker.stop();
@@ -66,12 +65,16 @@ export default class Chatroom extends React.Component {
   }
 
   handleSend(message) {
-    const fullMessage = { fullMessage: this.state.username + ": " + message };
+    const fullMessage = {
+      username: this.state.username,
+      message: message,
+      date: new Date()
+    };
     const myInit = {
       method: "POST",
       body: JSON.stringify(fullMessage),
       header: {
-        "Content-Type": "application/json",
+        "Content-Type": "text/plain",
         "Access-Control-Allow-Credentials": true,
         "Access-Control-Allow-Origin": "*"
       }
@@ -87,13 +90,14 @@ export default class Chatroom extends React.Component {
       });*/
     fetch(myRequest)
       .then(response => {
-        return response.json();
-      })
+        //return response.json();
+        console.log(response);
+      }) /* 
       .then(data => {
-        console.log(data.fullMessage);
-        this.appendMessage(data.fullMessage);
+        console.log(data.username);
+        this.appendMessage(data.username);
         console.log(this.state.messages);
-      })
+      })*/
       .catch(error => {
         console.error("Error:", error);
       });

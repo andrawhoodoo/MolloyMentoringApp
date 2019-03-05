@@ -69,12 +69,25 @@ export default class Survey extends React.Component {
 		//			For now, assigning variables manually
 		let qCounter = 1;
 		let qOrder = "q" + qCounter;
-		let roleInputs = document.getElementsByName('role');
 		let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionId");
-		let selectionId = eval("target." + questionId + ".value");
+		let selectionId = document.getElementsByName(questionId)[0].getAttribute("value");
+		let roleInputs = target.role.value;
+		let groupId = this.props.groupId;
 		// Feedback for testing
 		console.log("Question #" + qCounter + ": " + questionId);
 		console.log("Selection ID: " + selectionId);
+		console.log("Role: " + roleInputs);
+		console.log("Group ID: " + groupId);
+		// Write data to Groups DB
+		if (roleInputs === "Mentor") {
+			Meteor.call('addToMentorsPool', groupId);
+		}
+		else if (roleInputs === "Mentee") {
+			Meteor.call('addToMenteesPool', groupId);
+		}
+		else {
+			return 'error';
+		}
 		// Write data to Answers DB
 		Meteor.subscribe('answersData');
 		Meteor.call('addAnswer', this.props.surveyId, questionId, selectionId);

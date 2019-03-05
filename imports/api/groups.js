@@ -22,20 +22,20 @@ Meteor.methods({
 			name: groupName,
 			surveyId: surveyId,
 			description: description,
-			mentors_pool: '',
-			mentees_pool: '',
-			pairs: '',
+			mentors_pool: [],
+			mentees_pool: [],
+			pairs: [],
 			adminId: this.userId
 		});
 	},
-	'addToMentorPool': function(groupId) {
+	'addToMentorsPool': function(groupId) {
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
 		Groups.update({
 			_id: groupId
 		}, {
-			$push: { mentors_pool: this.userId}
+			$push: { mentors_pool: this.userId }
 		});
 	},
 	'addToMenteesPool': function(groupId) {
@@ -45,7 +45,7 @@ Meteor.methods({
 		Groups.update({
 			_id: groupId
 		}, {
-			$push: { mentees_pool: this.userId}
+			$push: { mentees_pool: this.userId }
 		});
 	}
 });

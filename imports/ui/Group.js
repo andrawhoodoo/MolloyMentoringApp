@@ -41,12 +41,12 @@ export default class Group extends React.Component {
 								{this.state.group &&  this.state.group.description ? <p className="lead font-italic">{this.state.group.description}</p> : undefined}
 							</div>
 							<div className="card-body">
-								<Survey surveyId={this.state.group.surveyId} />
+								<Survey surveyId={this.state.group.surveyId} groupId={this.state.group._id} />
 							</div>
 						</div>
 					</div>
 				</div>
-				
+
 			);
 		}
 		else {

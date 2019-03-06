@@ -6,7 +6,7 @@ import { Accounts } from "meteor/accounts-base";
 import Home from "./Home";
 import SurveyList from "./SurveyList";
 import Profile from "./Profile";
-import ChatroomLogin from "./chatroom/ChatroomLogin";
+import Chatroom from "./chatroom/Chatroom";
 
 export default class NavBar extends React.Component {
   onLogout() {

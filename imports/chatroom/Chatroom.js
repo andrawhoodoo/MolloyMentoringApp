@@ -2,10 +2,10 @@ import React from "react";
 import { Meteor } from "meteor/meteor";
 import { Tracker } from "meteor/tracker";
 
-import NavBar from "../NavBar";
+import NavBar from "../ui/NavBar";
 import ChatInput from "./ChatInput";
-import Footer from "../Footer";
-import { Profiles } from "../../api/profiles";
+import Footer from "../ui/Footer";
+import { Profiles } from "../api/profiles";
 
 export default class Chatroom extends React.Component {
   constructor(props) {

@@ -30,7 +30,7 @@ http
 
       response.write(JSON.stringify(messages));
     }
-    response.writeHead(200, header);
+    //response.writeHead(200, header);
     response.end();
     //console.log("ServerPotato" + counter);
   })

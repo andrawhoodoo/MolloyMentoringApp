@@ -1,4 +1,21 @@
+/***Reusable Colors *****/
+/*** #be6774 Light Molloy Red****/
+/**** #a1273a Molloy Red*****/
+
+
 body {
   padding: 10px;
   font-family: sans-serif;
+}
+
+.molloy-background {
+	background-color: #a1273a;
+}
+
+.molloy-button {
+	background-color: #a1273a;
+}
+
+.molloy-button:hover {
+	background-color: #be6774;
 }

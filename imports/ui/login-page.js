@@ -26,7 +26,7 @@ export default class LoginBox extends React.Component {
 	}
     render() {
         return (
-            <div id="Login-Box" className="bg-danger text-white">
+            <div id="Login-Box" className="molloy-background text-white">
                 <div id="Login-Logo-Float-Left" className="text-center mb-5">
                     <h1 className='bg-dark py-3'> Molloy College Online Mentoring App </h1>
                 </div>
@@ -46,7 +46,7 @@ export default class LoginBox extends React.Component {
 									<h4>Password: </h4>
 									<input className="Login-Box" type="password" ref='password' name="password" placeholder="Enter Password" />
 								</div>
-								<input className="btn btn-danger text-white" type="submit" name="" value="Login" />
+								<input className="btn molloy-button text-white" type="submit" name="" value="Login" />
 							</form>
 							<Link className="btn btn-primary text-white" to='/signup'>Don't have an account?</Link>
 						</div>

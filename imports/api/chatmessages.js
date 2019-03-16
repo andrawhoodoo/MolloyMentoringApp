@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 
-export const ChatMessages = new Mongo.Collection('ChatMesages');
+export const ChatMessages = new Mongo.Collection('ChatMessages');
 
 if(Meteor.isServer) {
 	Meteor.publish('Conversations', function(mentorPairId) {

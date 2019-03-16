@@ -4,6 +4,7 @@ import { Tracker } from 'meteor/tracker';
 
 import { ChatMessages } from '../api/chatmessages';
 import { Profiles } from '../api/profiles';
+import { Groups } from '../api/groups';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import MeteorChatInput from './MeteorChatInput';
@@ -13,7 +14,8 @@ export default class MeteorChatroom extends React.Component {
 		super(props);
 		this.state = {
 			username: '',
-			messages: []
+			messages: [],
+			group: ''
 		}
 	}
 	componentDidMount() {
@@ -27,15 +29,21 @@ export default class MeteorChatroom extends React.Component {
 			const messages = ChatMessages.find().fetch();
 			this.setState(messages ? {messages: messages} : {messages: []})
 		});
+		this.groupTracker = Tracker.autorun(() => {
+			Meteor.subscribe('groupsData');
+			const myGroup = Groups.findOne({pairs: { $in: [this.props.mentorPairId]}});
+			this.setState(myGroup ? {group: myGroup} : {group: ''});
+		});
 	}
 	componentWillUnmount() {
 		this.nameTracker.stop();
 		this.convoTracker.stop();
+		this.groupTracker.stop();
 	}
 	renderMessages() {
 		return this.state.messages.map(message => {
 			return (
-				<div className="border-bottom">
+				<div className="pt-2 border-bottom">
 					<h4>{message.username}</h4>
 					<p className="pb-0">{message.message}</p>
 					<div className="small text-danger font-italic text-right">{message.createdAt.toLocaleString()}</div>
@@ -48,11 +56,12 @@ export default class MeteorChatroom extends React.Component {
 			<div>
 				<NavBar />
 				<h1 className="text-white bg-dark text-left px-5 py-2">Welcome to the Chatroom!</h1>
-				<div className="container">
-					<div className="col col-lg-8 col-md-6">
+				<div className="container my-3">
+					<h2 className="text-danger font-weight-bold">{this.state.group.name}</h2>
+					<div className="chatroom">
 						{this.renderMessages()}
-						<MeteorChatInput mentorPairId={this.props.mentorPairId} username={this.state.username} />
 					</div>
+					<MeteorChatInput mentorPairId={this.props.mentorPairId} username={this.state.username} />
 				</div>
 				<Footer />
 			</div>

@@ -20,13 +20,15 @@ Meteor.methods({
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
-		const pairs = Groups.find({_id: groupId}).pairs;
-		const addedPair = pairs.push([mentor, mentee]);
+		const mentorPairId = MentorPairs.insert({
+			MentorId: mentor,
+			MenteeId: mentee
+		});
 		Groups.update({
 				_id: groupId
 			}, {
-				$set: {
-					pairs: addedPair
+				$push: {
+					pairs: mentorPairId
 				},
 				$pull: {
 					mentors_pool: mentor,
@@ -34,10 +36,6 @@ Meteor.methods({
 				}	
 			}
 		);
-		MentorPairs.insert({
-			MentorId: mentor,
-			MenteeId: mentee
-		});
 		Notifications.insert({
 			userId: mentor,
 			type: 'pairing',

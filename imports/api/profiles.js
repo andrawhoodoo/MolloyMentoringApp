@@ -8,6 +8,13 @@ if(Meteor.isServer){
     Meteor.publish('profileData', function(){
         return Profiles.find({ _id: this.userId });
     });
+	Meteor.publish('getName', function() {
+		return Profiles.find({}, {
+			fields: {
+				'name': 1
+			}
+		});
+	});	
 }
 
 Meteor.methods({

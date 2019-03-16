@@ -1,4 +1,5 @@
 import { Mongo } from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
 
 import { Groups } from './groups';
 import { Notifications } from './notifications';

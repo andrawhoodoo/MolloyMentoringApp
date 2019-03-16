@@ -7,7 +7,10 @@ export const MentorPairs = new Mongo.Collection('MentorPairs');
 
 if(Meteor.isServer) {
 	Meteor.publish('MentorPairsData', function() {
-		return MentorPairsData.find({});
+		return MentorPairs.find({});
+	});
+	Meteor.publish('myPairings', function() {
+		return MentorPairs.find({$or: [{MentorId: this.userId}, {MenteeId: this.userId}]});
 	});
 }
 

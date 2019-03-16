@@ -66,7 +66,7 @@ export default class CreateGroup extends React.Component {
 					<h2>Now Create Your Survey!</h2>
 					<div className="bg-dark text-white">
 						<CreateSurvey submitSurvey={this.submitSurvey.bind(this)} />
-						<button className="btn btn-block btn-danger" onClick={this.submitGroup.bind(this)}>Create Your New Group</button>
+						<button className="btn btn-block molloy-button" onClick={this.submitGroup.bind(this)}>Create Your New Group</button>
 					</div>
 				</div>
 				<Footer />

@@ -41,7 +41,7 @@ export default class ActiveGroups extends React.Component {
 				<tr key={group._id}>
 					<td className="font-weight-bold">{group.name}</td>
 					<td className="font-italic">{group.description}</td>
-					<td><a href="#" className="btn btn-danger text-white">Go To Group</a></td>
+					<td><a href="#" className="btn molloy-button text-white">Go To Group</a></td>
 				</tr>
 			);
 		});

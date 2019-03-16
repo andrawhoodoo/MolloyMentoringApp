@@ -58,7 +58,7 @@ export default class ChatList extends React.Component {
 					<td>{MentorName}</td>
 					<td>{MenteeName}</td>
 					<td>{GroupName}</td>
-					<td><button className="btn btn-danger text-white" onClick={() => this.goToChatroom(pair._id)}>Go To Chat</button></td>
+					<td><button className="btn molloy-button text-white" onClick={() => this.goToChatroom(pair._id)}>Go To Chat</button></td>
 				</tr>
 			);
 		})

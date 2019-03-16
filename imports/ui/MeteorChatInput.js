@@ -20,7 +20,7 @@ export default class ChatInput extends React.Component {
 					  placeholder=" Message "
 					  ref="message"
 					/>
-					<input className="btn btn-danger" type="submit" value="Submit" />
+					<input className="btn molloy-button" type="submit" value="Submit" />
 				</div>
 			</form>
 		);

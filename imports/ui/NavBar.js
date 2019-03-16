@@ -14,7 +14,7 @@ export default class NavBar extends React.Component {
   }
   render() {
     return (
-      <nav className="navbar navbar-expand bg-danger navbar-dark px-2">
+      <nav className="navbar navbar-expand molloy-background navbar-dark px-2">
         <div className="container">
           <a href="#" id="brand-name" className="navbar-brand font-weight-bold">
             OMA

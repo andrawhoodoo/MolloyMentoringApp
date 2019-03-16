@@ -105,7 +105,7 @@ export default class Survey extends React.Component {
 							<li><input type='radio' name='role' value="Mentee" />Mentee</li>
 						</ul>
 						{this.renderQuestions()}
-						<button className='btn btn-danger text-white' onClick={this.submitSurvey.bind(this)}>Submit Your Answers</button>
+						<button className='btn molloy-button text-white' onClick={this.submitSurvey.bind(this)}>Submit Your Answers</button>
 					</form>
 				</section>
 			</div>

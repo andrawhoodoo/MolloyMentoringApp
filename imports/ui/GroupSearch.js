@@ -35,7 +35,7 @@ export default class GroupSearch extends React.Component {
 			return (
 				<tr key={id}>
 					<td>{group.name}</td>
-					<td><button className="btn btn-danger" onClick={this.startSearch.bind(this, id)}>Look at group</button></td>
+					<td><button className="btn molloy-button" onClick={this.startSearch.bind(this, id)}>Look at group</button></td>
 				</tr>
 			);
 		});

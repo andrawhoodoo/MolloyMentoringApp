@@ -34,7 +34,7 @@ export default class UserCreatedGroups extends React.Component {
 				<tr key={group._id}>
 					<td className="font-weight-bold">{group.name}</td>
 					<td className="font-italic">{group.description}</td>
-					<td><button onClick={this.runPairs(group._id)} className="btn btn-danger text-white">Match New Users!</button></td>
+					<td><button onClick={this.runPairs(group._id)} className="btn molloy-button text-white">Match New Users!</button></td>
 				</tr>
 			);
 		});

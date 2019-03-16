@@ -56,13 +56,13 @@ export default class SurveyList extends React.Component {
 										<tr>
 											<td>Mentor</td>
 											<td>Complete</td>
-											<td><a href="#" className="btn btn-danger text-white">Go To Survey</a></td>
+											<td><a href="#" className="btn molloy-button text-white">Go To Survey</a></td>
 											<td><a href="#" className="remove-survey-button text-dark"><i className="fas fa-times pt-2"></i></a></td>
 										</tr>
 										<tr>
 											<td>Mentee</td>
 											<td>Incomplete</td>
-											<td><a href="#" className="btn btn-danger text-white">Edit Survey</a></td>
+											<td><a href="#" className="btn molloy-button text-white">Edit Survey</a></td>
 											<td><a href="#" className="remove-survey-button text-dark"><i className="fas fa-times pt-2"></i></a></td>
 										</tr>
 									</tbody>

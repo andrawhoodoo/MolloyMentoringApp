@@ -48,7 +48,7 @@ export default class PhoneForm extends React.Component {
 							<input className="form-control" type="text" ref="pre" defaultValue={this.state.phone.pre} />-
 							<input className="form-control" type="text" ref="line" defaultValue={this.state.phone.line} />
 						</div>
-						<button className="btn btn-danger btn-lg" onClick={this.onSubmit.bind(this)}>Submit</button>
+						<button className="btn molloy-button btn-lg" onClick={this.onSubmit.bind(this)}>Submit</button>
 					</form>
 				</div>
 			)
@@ -59,7 +59,7 @@ export default class PhoneForm extends React.Component {
 					<div className="mb-3"><span className="mr-2 my-2 p-1 rounded bg-light text-dark">Phone:</span>
 					{this.state.phone.area} - {this.state.phone.pre} - {this.state.phone.line}
 					</div>
-					<button className="btn btn-danger btn-lg" onClick={this.editPhone.bind(this)}>Edit your phone number</button>
+					<button className="btn molloy-button btn-lg" onClick={this.editPhone.bind(this)}>Edit your phone number</button>
 				</div>
 			);
 		}
@@ -72,7 +72,7 @@ export default class PhoneForm extends React.Component {
 							<input className="form-control" type="text" ref="pre" placeholder='XXX' />
 							<input className="form-control" type="text" ref="line" placeholder='XXXX' />
 						</div>
-						<button className="btn  btn-lg btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
+						<button className="btn  btn-lg molloy-button" onClick={this.onSubmit.bind(this)}>Submit</button>
 					</form>
 				</div>
 			);

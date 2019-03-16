@@ -62,7 +62,7 @@ export default class Group extends React.Component {
 							<div className="card-body">
 								<p>Want to join? Pick a role & take the survey!</p>
 								<button onClick={this.takeSurvey.bind(this)}>Take Survey</button>
-								{this.state.error ? <p className='text-danger font-weight-bold'>{this.state.error}</p> : undefined}
+								{this.state.error ? <p className='molloy-text font-weight-bold'>{this.state.error}</p> : undefined}
 							</div>
 						</div>
 					</div>

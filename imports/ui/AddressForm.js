@@ -51,7 +51,7 @@ export default class AddressForm extends React.Component {
 							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">State: </span></div><input className="form-control" type="text" ref="state" defaultValue={this.state.address.state} /></div></li>
 							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Zip: </span></div><input className="form-control" type="text" ref="zip" defaultValue={this.state.address.zip} /></div></li>
 						</ul>
-						<button className="btn btn-lg btn-danger" onClick={this.onSubmit.bind(this)}>Submit</button>
+						<button className="btn btn-lg molloy-button" onClick={this.onSubmit.bind(this)}>Submit</button>
 					</form>
 				</div>
 			);
@@ -66,7 +66,7 @@ export default class AddressForm extends React.Component {
 						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">State: </span>{this.state.address.state}</li>
 						<li><span className="mr-2 my-2 p-1 rounded bg-light text-dark">Zip: </span>{this.state.address.zip}</li>
 					</ul>
-					<button className="btn btn-danger btn-lg" onClick={this.editAddress.bind(this)}>Edit your address</button>
+					<button className="btn molloy-button btn-lg" onClick={this.editAddress.bind(this)}>Edit your address</button>
 				</div>
 			);
 		}

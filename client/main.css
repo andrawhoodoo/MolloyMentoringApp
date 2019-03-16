@@ -14,6 +14,7 @@ body {
 
 .molloy-button {
 	background-color: #a1273a;
+	color: white;
 }
 
 .molloy-button:hover {
@@ -22,6 +23,10 @@ body {
 
 .molloy-border {
 	border-color: #a1273a;
+}
+
+.molloy-text {
+	color: #a1273a;
 }
 
 .chatroom {

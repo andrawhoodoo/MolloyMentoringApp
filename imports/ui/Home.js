@@ -54,7 +54,7 @@ export default class Home extends React.Component {
 					<UserCreatedGroups />
 					<div className="text-center container py-5">
 						<Link to='/group-search' className='text-white'>
-								<button className='btn btn-danger btn-lg'>Search For Groups</button>
+								<button className='btn molloy-button btn-lg'>Search For Groups</button>
 						</Link>
 						<Link to='/create-group' className='text-white'>
 							<button className='btn btn-info btn-lg'>Create a New Group!</button>

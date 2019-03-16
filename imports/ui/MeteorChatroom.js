@@ -46,7 +46,7 @@ export default class MeteorChatroom extends React.Component {
 				<div className="pt-2 border-bottom">
 					<h4>{message.username}</h4>
 					<p className="pb-0">{message.message}</p>
-					<div className="small text-danger font-italic text-right">{message.createdAt.toLocaleString()}</div>
+					<div className="small molloy-text font-italic text-right">{message.createdAt.toLocaleString()}</div>
 				</div>
 			);
 		});
@@ -57,7 +57,7 @@ export default class MeteorChatroom extends React.Component {
 				<NavBar />
 				<h1 className="text-white bg-dark text-left px-5 py-2">Welcome to the Chatroom!</h1>
 				<div className="container my-3">
-					<h2 className="text-danger font-weight-bold">{this.state.group.name}</h2>
+					<h2 className="molloy-text font-weight-bold">{this.state.group.name}</h2>
 					<div className="chatroom">
 						{this.renderMessages()}
 					</div>

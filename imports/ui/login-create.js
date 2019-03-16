@@ -39,7 +39,7 @@ export default class CreateUser extends React.Component {
 
     render() {
         return(
-            <div id="Login-Box" className="bg-danger text-white">
+            <div id="Login-Box" className="molloy-background text-white">
                 <div id="Login-Logo-Float-Left" className="text-center mb-5">
                     <h1 className='bg-dark py-3'> Molloy College Online Mentoring App </h1>
                 </div>
@@ -67,7 +67,7 @@ export default class CreateUser extends React.Component {
 										<h4>Password: </h4>
 										<input className="Login-Box" type="password" ref='password' name="password" placeholder="Enter Password" />
 									</div>
-	                            <input className="btn btn-danger text-white" type="submit" name="" value="Create" />
+	                            <input className="btn molloy-button text-white" type="submit" name="" value="Create" />
 	                        </form>
 							{this.state.error ? <p className="text-warning">{this.state.error}</p> : undefined}
 							<Link className="btn btn-primary text-white" to="/">Already have an account?</Link>

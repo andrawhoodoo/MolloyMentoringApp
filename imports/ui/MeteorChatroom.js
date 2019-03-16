@@ -33,12 +33,12 @@ export default class MeteorChatroom extends React.Component {
 		this.convoTracker.stop();
 	}
 	renderMessages() {
-		this.state.messages.map(message => {
+		return this.state.messages.map(message => {
 			return (
-				<div>
-					<h5>{message.username}</h5>
-					<p>{message.message}</p>
-					<p>{message.createdAt}</p>
+				<div className="border-bottom">
+					<h4>{message.username}</h4>
+					<p className="pb-0">{message.message}</p>
+					<div className="small text-danger font-italic text-right">{message.createdAt.toLocaleString()}</div>
 				</div>
 			);
 		});
@@ -49,8 +49,10 @@ export default class MeteorChatroom extends React.Component {
 				<NavBar />
 				<h1 className="text-white bg-dark text-left px-5 py-2">Welcome to the Chatroom!</h1>
 				<div className="container">
-					{this.renderMessages()}
-					<MeteorChatInput mentorPairId={this.props.mentorPairId} username={this.state.username} />
+					<div className="col col-lg-8 col-md-6">
+						{this.renderMessages()}
+						<MeteorChatInput mentorPairId={this.props.mentorPairId} username={this.state.username} />
+					</div>
 				</div>
 				<Footer />
 			</div>

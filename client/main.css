@@ -19,3 +19,7 @@ body {
 .molloy-button:hover {
 	background-color: #be6774;
 }
+
+.molloy-border {
+	border-color: #a1273a;
+}

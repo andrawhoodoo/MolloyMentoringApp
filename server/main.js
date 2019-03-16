@@ -9,6 +9,7 @@ import '../imports/api/answers';
 import '../imports/api/mentorpairs';
 import '../imports/api/options';
 import '../imports/api/scores';
+import '../imports/api/chatmessages';
 
 
 Meteor.startup(() => {

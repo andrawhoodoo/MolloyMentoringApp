@@ -13,14 +13,16 @@ export default class ChatInput extends React.Component {
 	}
 	render() {
 		return (
-			<div className='my-3'>
-				<input
-				  type="text"
-				  placeholder=" Message "
-				  ref="message"
-				/>
-				<button className="btn btn-danger" onClick={this.handleSubmit.bind(this)}>Submit</button>
-			</div>
+			<form onSubmit={this.handleSubmit.bind(this)} className='my-3'>
+				<div className="input-group"> 
+					<input
+					  type="text"
+					  placeholder=" Message "
+					  ref="message"
+					/>
+					<input className="btn btn-danger" type="submit" value="Submit" />
+				</div>
+			</form>
 		);
 	}
 }

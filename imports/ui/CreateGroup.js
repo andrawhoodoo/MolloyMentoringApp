@@ -42,9 +42,13 @@ export default class CreateGroup extends React.Component {
 				Meteor.call('addQuestion', 'This is my question', myArr, 'limit', (err, result) => {
 					qArr.push(result);	
 					console.log(qArr);
-					Meteor.call('addSurvey', 'MySurvey', qArr, (err, result) => {
-						this.setState({surveyId: result});
-						console.log(this.state)
+					Meteor.call('addQuestion', 'Here is another question', myArr, 'limit', (err, result) => {
+						qArr.push(result);
+						console.log(qArr);
+						Meteor.call('addSurvey', 'MySurvey', qArr, (err, result) => {
+							this.setState({surveyId: result});
+							console.log(this.state)
+						});
 					});
 				});
 			});

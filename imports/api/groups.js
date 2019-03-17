@@ -17,7 +17,6 @@ Meteor.methods({
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
-		console.log(groupName, "my inputs");
 		Groups.insert({
 			name: groupName,
 			surveyId: surveyId,

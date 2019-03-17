@@ -6,7 +6,7 @@ import { Groups } from '../api/groups';
 
 Meteor.subscribe('answersData');
 Meteor.subscribe('scoresData');
-Meteor.subscribe('grouptData');
+Meteor.subscribe('groupsData');
 
 
 export const scoreGroupMembers = groupId => {

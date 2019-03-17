@@ -11,7 +11,8 @@ export default class Survey extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			survey: ''
+			survey: '',
+			numQuestions: 0
 		}
 	}
 	componentDidMount() {
@@ -19,13 +20,15 @@ export default class Survey extends React.Component {
 			Meteor.subscribe('surveysData');
 			const mySurvey = Surveys.findOne({_id: this.props.surveyId});
 			this.setState(mySurvey ? {survey: mySurvey} : {survey: ''});
+			this.setState(mySurvey ? {numQuestions: mySurvey.questions.length} : {numQuestions: 0});
+			console.log(this.state.numQuestions);
 		});
+		
 	}
 	componentWillUnmount() {
 		this.surveyTracker.stop();
 	}
 	renderQuestions() {
-		console.log(this.state.survey.questions);
 		if(this.state.survey) {
 			let qCounter = 0
 			return this.state.survey.questions.map(questionId => {
@@ -35,7 +38,7 @@ export default class Survey extends React.Component {
 				const myQuestion = Questions.findOne({_id: questionId});
 				if(myQuestion) {
 					return (
-						<div name={qOrder} questionId={questionId}>
+						<div name={qOrder} questionid={questionId}>
 							<p>{myQuestion.text}</p>
 							<ol>
 							{this.renderOptions(myQuestion)}
@@ -63,21 +66,23 @@ export default class Survey extends React.Component {
 	}
 
 	submitSurvey(e) {
+		console.log('in submit survey')
 		e.preventDefault();
 		const target = event.target.form;
 		// TODO: Insert FOR loop to cycle through all questions.
 		//			For now, assigning variables manually
-		let qCounter = 1;
-		let qOrder = "q" + qCounter;
-		let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionId");
-		let selectionId = document.getElementsByName(questionId)[0].getAttribute("value");
 		let roleInputs = target.role.value;
 		let groupId = this.props.groupId;
+		for(let i=1; i<this.state.numQuestions+1; i++) {
+			console.log('in for loop');
+			let qOrder = "q" + i;
+			let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionid");
+			let selectionId = document.getElementsByName(questionId)[0].getAttribute("value");
+			// Write data to Answers DB
+			Meteor.call('addAnswer', this.props.surveyId, questionId, selectionId);
+			console.log('answer added');
+		}
 		// Feedback for testing
-		console.log("Question #" + qCounter + ": " + questionId);
-		console.log("Selection ID: " + selectionId);
-		console.log("Role: " + roleInputs);
-		console.log("Group ID: " + groupId);
 		// Write data to Groups DB
 		if (roleInputs === "Mentor") {
 			Meteor.call('addToMentorsPool', groupId);
@@ -88,9 +93,6 @@ export default class Survey extends React.Component {
 		else {
 			return 'error';
 		}
-		// Write data to Answers DB
-		Meteor.subscribe('answersData');
-		Meteor.call('addAnswer', this.props.surveyId, questionId, selectionId);
 	}
 
 	render() {

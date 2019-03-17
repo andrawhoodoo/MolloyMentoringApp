@@ -15,7 +15,7 @@ Meteor.methods({
   	'addSurvey': function(title, questionIdArr) {
 		const id = Surveys.insert({
 			title: title,
-			author: this.userIs,
+			author: this.userId,
 			questions: questionIdArr
 		});
 		console.log(questionIdArr);

@@ -69,8 +69,6 @@ export default class Survey extends React.Component {
 		console.log('in submit survey')
 		e.preventDefault();
 		const target = event.target.form;
-		// TODO: Insert FOR loop to cycle through all questions.
-		//			For now, assigning variables manually
 		let roleInputs = target.role.value;
 		let groupId = this.props.groupId;
 		for(let i=1; i<this.state.numQuestions+1; i++) {

@@ -12,15 +12,17 @@ if(Meteor.isServer) {
 
 Meteor.methods({
 	'addScore': function(mentor, mentee, surveyId, score) {
-		console.log('in add score');
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}
-		Scores.insert({
+		Scores.update({
 			mentor: mentor,
       		mentee: mentee,
-			surveyId: surveyId,
-      		score: score
-		})
+			surveyId: surveyId
+		}, {
+      		$set: {score: score}
+		}, {
+			upsert: true
+		});
 	}
 });

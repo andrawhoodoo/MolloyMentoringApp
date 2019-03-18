@@ -14,12 +14,10 @@ Meteor.subscribe('groupsData');
 */
 const scoreAnswers = (array1, array2) => {
 	let currentScore = 0;
-	for(let i=0; i < array1.length - 1; i++) {
-	  	for(let j=0; j < array2.length - 1; j++) {
-			if(array1[i].selections === array2[j].selections) {
-		  		currentScore = currentScore + 1;
-			}
-	  	}
+	for(let i=0; i < array1.length; i++) {
+		if(array1[i].selections === array2[i].selections) {
+			currentScore = currentScore + 1;
+		}
 	}
 	// Convert score to decimal from 0-1
 	console.log('total score: ', currentScore);
@@ -36,10 +34,9 @@ export const scoreGroupMembers = groupId => {
   	let menteesPool = currentGroup.mentees_pool;
 
   	for(let i = 0; i < mentorsPool.length; i++) {
-		console.log('in for loop');
     	const mentorAnswers = Answers.find({userId: mentorsPool[i], surveyId: currentSurveyId}).fetch();
 		console.log(mentorAnswers);
-    	for(let j = 0; j < menteesPool.length - 1; j++) {
+    	for(let j = 0; j < menteesPool.length; j++) {
       		const menteeAnswers = Answers.find({userId: menteesPool[j], surveyId: currentSurveyId}).fetch();
       		Meteor.call('addScore', mentorsPool[i], menteesPool[j], currentSurveyId, scoreAnswers(mentorAnswers, menteeAnswers));
     	}

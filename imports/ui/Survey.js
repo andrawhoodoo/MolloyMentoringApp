@@ -54,6 +54,7 @@ export default class Survey extends React.Component {
 	renderOptions(question) {
 		const questionId = question._id;
 		return question.options.map(optionId => {
+			console.log(optionId)
 			Meteor.subscribe('optionsData');
 			const myOption = Options.findOne({_id: optionId});
 			if(myOption) {
@@ -66,7 +67,6 @@ export default class Survey extends React.Component {
 	}
 
 	submitSurvey(e) {
-		console.log('in submit survey')
 		e.preventDefault();
 		const target = event.target.form;
 		let roleInputs = target.role.value;
@@ -75,7 +75,14 @@ export default class Survey extends React.Component {
 			console.log('in for loop');
 			let qOrder = "q" + i;
 			let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionid");
-			let selectionId = document.getElementsByName(questionId)[0].getAttribute("value");
+			let radios = document.getElementsByName(questionId);
+			let selectionId = '';
+			for(let i=0; i<radios.length; i++) {
+				if(radios[i].checked) {
+					alert(radios[i].value)
+					selectionId = radios[i].value
+				}
+			}
 			// Write data to Answers DB
 			Meteor.call('addAnswer', this.props.surveyId, questionId, selectionId);
 			console.log('answer added');

@@ -34,7 +34,7 @@ Meteor.methods({
 		Groups.update({
 			_id: groupId
 		}, {
-			$push: { mentors_pool: this.userId }
+			$addToSet: { mentors_pool: this.userId }
 		});
 	},
 	'addToMenteesPool': function(groupId) {
@@ -44,7 +44,7 @@ Meteor.methods({
 		Groups.update({
 			_id: groupId
 		}, {
-			$push: { mentees_pool: this.userId }
+			$addToSet: { mentees_pool: this.userId }
 		});
 	}
 });

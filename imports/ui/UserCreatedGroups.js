@@ -25,8 +25,9 @@ export default class UserCreatedGroups extends React.Component {
 		this.groupTracker.stop();
 	}
 	runPairs(id) {
+		console.log('in run pairs');
 		scoreGroupMembers(id);
-		pair(id);
+		//pair(id);
 	}
 	renderActiveGroupsItems() {
 		return this.state.groups.map(group => {
@@ -34,7 +35,7 @@ export default class UserCreatedGroups extends React.Component {
 				<tr key={group._id}>
 					<td className="font-weight-bold">{group.name}</td>
 					<td className="font-italic">{group.description}</td>
-					<td><button onClick={this.runPairs(group._id)} className="btn molloy-button text-white">Match New Users!</button></td>
+					<td><button onClick={() => this.runPairs(group._id)} className="btn molloy-button text-white">Match New Users!</button></td>
 				</tr>
 			);
 		});

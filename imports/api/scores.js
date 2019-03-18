@@ -12,6 +12,7 @@ if(Meteor.isServer) {
 
 Meteor.methods({
 	'addScore': function(mentor, mentee, surveyId, score) {
+		console.log('in add score');
 		if(!this.userId) {
 			throw new Meteor.Error('not-authorized');
 		}

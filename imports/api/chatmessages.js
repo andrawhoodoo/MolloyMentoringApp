@@ -5,7 +5,7 @@ export const ChatMessages = new Mongo.Collection('ChatMessages');
 
 if(Meteor.isServer) {
 	Meteor.publish('Conversations', function(mentorPairId) {
-		return ChatMessages.find({mentorPairId: mentorPairId}, { sort: { createdAt: -1 } });
+		return ChatMessages.find({mentorPairId: mentorPairId}, { sort: { createdAt: 1 } });
 	})
 }
 

@@ -23,7 +23,7 @@ const authenticatedPages = [
   "/surveys",
   "/create-survey",
   "/create-group",
-  "/chatroom",
+  "/Chatroom",
   "/group-search"
 ];
 

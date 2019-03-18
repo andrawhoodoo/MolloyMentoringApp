@@ -27,7 +27,7 @@ export default class UserCreatedGroups extends React.Component {
 	runPairs(id) {
 		console.log('in run pairs');
 		scoreGroupMembers(id);
-		//pair(id);
+		pair(id);
 	}
 	renderActiveGroupsItems() {
 		return this.state.groups.map(group => {

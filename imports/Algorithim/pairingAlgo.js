@@ -7,11 +7,8 @@ import { MentorPairs } from '../api/mentorpairs';
 Meteor.subscribe('scoresData');
 Meteor.subscribe('groupsData');
 
-export const pair = groupId => {
-	return 'foo';
-}
 
-export const foo = groupId => {
+export const pair = groupId => {
   const myGroup = Groups.findOne({_id: groupId});
   const surveyId = myGroup.surveyId;
   const ara = Scores.find({surveyId: surveyId}).fetch();
@@ -85,7 +82,7 @@ export const foo = groupId => {
 
   let writeToDB = (arr) => {
     for(let i=0; i<arr.length; i++){
-      Meteor.call('addMentorPair', arr[i].mentor, arr[i].mentee, groupId);
+      Meteor.call('createPair', arr[i].mentor, arr[i].mentee, groupId);
       //MentorPairs.insert({mentorId:arr[i].mentor, menteeId:arr[i].mentee})
     }
   }

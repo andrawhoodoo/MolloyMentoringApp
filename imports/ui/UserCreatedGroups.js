@@ -4,8 +4,8 @@ import { Tracker } from 'meteor/tracker';
 import { Link } from 'react-router-dom';
 
 import { Groups } from '../api/groups';
-import { pair } from '../Algorithim/pairingAlgo';
-import { scoreGroupMembers } from '../Algorithim/Score';
+import { pair } from '../algorithm/pairingAlgo';
+import { scoreGroupMembers } from '../algorithm/Score';
 
 export default class UserCreatedGroups extends React.Component {
 	constructor(props) {

@@ -46,7 +46,7 @@ export default class CreateUser extends React.Component {
                 <div id="Login-Info-Float-Right" className='container pb-5'>
                     <div id="Login-Section" className='card bg-dark pb-5'>
                         <div className="card-head">
-                        	<h1> Create Account </h1>
+                        	<h1 className='p-3'> Create Account </h1>
                         </div>
                         <div className="card-body">
 	                        <form className="mb-3" onSubmit={this.onSubmit.bind(this)} noValidate>

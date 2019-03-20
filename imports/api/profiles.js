@@ -31,6 +31,20 @@ Meteor.methods({
 		  	}
 	    });
     },
+	
+	'updateName': function(nameObj) {
+		if(!this.userId) {
+	  		throw new Meteor.Error('not-authorized');			
+	  	}
+		Profiles.update({
+		  	_id: this.userId
+	  	}, {
+	  		$set: {name: {
+				first: nameObj.first,
+				last: nameObj.last
+			}}
+	  	});
+	},
 
   	'updateAddress': function(addressObj) {
 	  	if(!this.userId) {

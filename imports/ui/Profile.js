@@ -4,6 +4,7 @@ import {Tracker} from 'meteor/tracker';
 
 import NavBar from './NavBar';
 import Footer from './Footer';
+import NameForm from './NameForm';
 import AddressForm from './AddressForm';
 import PhoneForm from './PhoneForm';
 import {Profiles} from '../api/profiles';
@@ -12,7 +13,7 @@ export default class Profile extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: '',
+			name: ''
 		}
 	}
 	componentDidMount() {
@@ -26,7 +27,7 @@ export default class Profile extends React.Component {
 		this.profileTracker.stop();
 	}
 	renderCustomHeader() {
-		return <h1 className="user-name px-3 mb-4 text-white">{this.state.name.first}'s Profile</h1>;
+		return <h1 className="user-name px-3 mb-4 text-white float-left">{this.state.name.first}'s Profile</h1>;
 	}
     render() {
         return (
@@ -37,6 +38,7 @@ export default class Profile extends React.Component {
 						
 						<div className="user-customization px-3 py-4 bg-dark text-white">
 							{this.renderCustomHeader()}
+							<NameForm />
 							<AddressForm />
 							<PhoneForm />
 						</div>

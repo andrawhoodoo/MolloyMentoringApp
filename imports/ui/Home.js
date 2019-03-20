@@ -41,7 +41,7 @@ export default class Home extends React.Component {
 	}
     render() {
         return (
-            <div>
+            <div className="full-page">
 				<NavBar />
 				<section id="home-page" className="text-secondary mt-3">
 					<div className="px-3">

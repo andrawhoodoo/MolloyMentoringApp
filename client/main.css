@@ -8,6 +8,14 @@ body {
   font-family: sans-serif;
 }
 
+#Login-Box {
+	height: 100vh;
+}
+
+.full-page {
+	height: 100vh;
+}
+
 .molloy-background {
 	background-color: #a1273a;
 }

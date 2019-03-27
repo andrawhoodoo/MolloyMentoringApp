@@ -1,6 +1,6 @@
   import { pairingAlgo } from '../Algorithim/pairingAlgo.js';
 
-  const ara = [
+ const ara = [
 {mentor:'a', mentee:'1', score:10},{mentor:'b', mentee:'1', score:20},{mentor:'c', mentee:'1', score:30},{mentor:'d', mentee:'1', score:90},
 {mentor:'a', mentee:'2', score:40},{mentor:'b', mentee:'2', score:50},{mentor:'c', mentee:'2', score:60},{mentor:'d', mentee:'2', score:40},
 {mentor:'a', mentee:'3', score:70},{mentor:'b', mentee:'3', score:80},{mentor:'c', mentee:'3', score:90},{mentor:'d', mentee:'3', score:80},
@@ -70,3 +70,6 @@ let time = new Date().getTime();
 let a1 = findBestPairs(mentors,0,menteess,ara1);
 console.log(a1);
 console.log(new Date().getTime() - time);
+
+
+//https://repl.it/@kenaz98/algo     Where I've been running the ALgo outside the use of a DB

@@ -1,5 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-
 import { Groups } from '../api/groups';
 import { Scores } from '../api/scores';
 import { MentorPairs } from '../api/mentorpairs';

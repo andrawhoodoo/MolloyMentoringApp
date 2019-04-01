@@ -6,7 +6,7 @@ export default class SingleOption extends React.Component {
 	  	return (
 			<div>
 				<input type="text" placeHolder="Enter Your Option" value={this.props.value}/>
-				<button onClick={this.props.deleteFunc}>Remove Button</button>
+				<button onClick={this.props.deletefunc}>Remove Button</button>
 			</div>
 		)
 	}

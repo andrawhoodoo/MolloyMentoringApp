@@ -14,7 +14,7 @@ export default class QuestionForm extends React.Component {
     
   renderActiveOptions() {
     return this.state.OptionArray.map((option, index) => {
-      {option.active ? <li><SingleOption value={option.value} deleteFunc={this.deleteOption.bind(this, index)} /></li> : undefined}
+      {option.active ? <li><SingleOption value={option.value} deletefunc={this.deleteOption.bind(this, index)} /></li> : undefined}
     });
   }
   addOption() {
@@ -27,8 +27,8 @@ export default class QuestionForm extends React.Component {
     return (
       <div className="container">
         <div className="card mb-4">
-          <div className="card-header bg-dark">
-            <h3 className="text-white">Create Your Survey</h3>
+          <div className="card-header">
+            <h3 className="text-dark">Create Your Survey</h3>
           </div>
               <div className="card-body">
                 <input type="text" placeholder="Enter Your Question"/>

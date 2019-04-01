@@ -14,7 +14,7 @@ export default class QuestionForm extends React.Component {
     
   renderActiveOptions() {
     return this.state.OptionArray.map((option, index) => {
-      {option.active ? <li><SingleOption value={option.value} deletefunc={this.deleteOption.bind(this, index)} /></li> : undefined}
+		return (option.active ? <li key={index}><SingleOption value={option.value} deletefunc={this.deleteOption.bind(this, index)} /></li> : undefined)
     });
   }
   addOption() {

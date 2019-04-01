@@ -25,8 +25,9 @@ export default class QuestionForm extends React.Component {
 	  this.state.OptionArray[index].active = false;
 	  this.setState({OptionArray: this.state.OptionArray});
   }
-  handleChange(index) {
-	  
+  handleChange(index, e) {
+	  this.state.OptionArray[index].value = e.target.value;
+	  this.setState({OptionArray: this.state.OptionArray});
   }
   render() {
     return (

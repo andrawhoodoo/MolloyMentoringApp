@@ -67,7 +67,6 @@ export default class CreateGroup extends React.Component {
 							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Description</span></div><input className="form-control" type="text" ref="groupDescription" placeholder="(optional)" /></div></li>
 						</ul>
 					</form>
-					<h2>Now Create Your Survey!</h2>
 					<div className="bg-dark text-white">
 						<CreateSurvey submitSurvey={this.submitSurvey.bind(this)} />
 						<button className="btn btn-block molloy-button" onClick={this.submitGroup.bind(this)}>Create Your New Group</button>

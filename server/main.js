@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 
 // Must import all desired db collections as such
 import '../imports/api/surveys';
@@ -13,5 +14,6 @@ import '../imports/api/chatmessages';
 
 
 Meteor.startup(() => {
+	Accounts.createUser({email: 'admin@test.com', password: '12345678'});
   
 });

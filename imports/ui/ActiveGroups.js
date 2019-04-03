@@ -4,6 +4,7 @@ import { Tracker } from 'meteor/tracker';
 import { Link } from 'react-router-dom';
 
 import { Groups } from '../api/groups';
+import { MentorPairs } from '../api/mentorpairs';
 
 export default class ActiveGroups extends React.Component {
 	constructor(props) {
@@ -15,16 +16,25 @@ export default class ActiveGroups extends React.Component {
 	componentDidMount() {
 		this.groupTracker = Tracker.autorun(() => {
 			Meteor.subscribe('groupsData');
+			Meteor.subscribe('myPairings');
 			const menteeGroups = Groups.find({mentees_pool: Meteor.userId()}).fetch();
 			const mentorGroups = Groups.find({mentors_pool: Meteor.userId()}).fetch();
 			{/* need to alter these matched groups to reflect active groups*/}
-			const matchedGroups1 = Groups.find({pairs: {mentorId: Meteor.userId()}}).fetch();
-			const matchedGroups2 = Groups.find({pairs: {menteeId: Meteor.userId()}}).fetch();
+			const myPairs = MentorPairs.find().fetch();
+			console.log(myPairs);
+			let matchedGroups = [];
+			const findPairGroups = (arr) => {
+				arr.forEach(obj => {
+					let currentGroup = Groups.findOne({pairs: obj._id});
+					matchedGroups.push(currentGroup);
+				});
+			}
+			findPairGroups(myPairs);
+			console.log(matchedGroups);
 			const groupsArr = [];
 			this.pushToArray(groupsArr, menteeGroups);
 			this.pushToArray(groupsArr, mentorGroups);
-			this.pushToArray(groupsArr, matchedGroups1);
-			this.pushToArray(groupsArr, matchedGroups2);
+			this.pushToArray(groupsArr, matchedGroups);
 			this.setState({groups: groupsArr});
 		});
 	}

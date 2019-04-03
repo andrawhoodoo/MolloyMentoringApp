@@ -14,6 +14,6 @@ import '../imports/api/chatmessages';
 
 
 Meteor.startup(() => {
-	Accounts.createUser({email: 'admin@test.com', password: '12345678'});
+
   
 });

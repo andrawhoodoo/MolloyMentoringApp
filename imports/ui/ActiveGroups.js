@@ -17,6 +17,7 @@ export default class ActiveGroups extends React.Component {
 			Meteor.subscribe('groupsData');
 			const menteeGroups = Groups.find({mentees_pool: Meteor.userId()}).fetch();
 			const mentorGroups = Groups.find({mentors_pool: Meteor.userId()}).fetch();
+			{/* need to alter these matched groups to reflect active groups*/}
 			const matchedGroups1 = Groups.find({pairs: {mentorId: Meteor.userId()}}).fetch();
 			const matchedGroups2 = Groups.find({pairs: {menteeId: Meteor.userId()}}).fetch();
 			const groupsArr = [];

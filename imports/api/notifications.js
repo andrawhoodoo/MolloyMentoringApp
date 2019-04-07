@@ -8,3 +8,10 @@ if(Meteor.isServer) {
 		return Notifications.find({userId: this.userId});
 	});
 }
+
+Meteor.methods({
+	'deleteNotification': function(id) {
+		const removeComplete = Notifications.remove({_id: id});
+		return removeComplete;
+	}
+})

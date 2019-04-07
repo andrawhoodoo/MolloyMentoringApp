@@ -17,7 +17,6 @@ Meteor.methods({
       options: options,
       limit: limit || 1 //For future implementation: how many selections per question
     });
-	console.log(options);
 	return id;
   }
 });

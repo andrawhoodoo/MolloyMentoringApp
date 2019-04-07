@@ -22,7 +22,8 @@ export default class CreateSurvey extends React.Component {
 		let options = [];
 		for(let i=0; i < optArr.length; i++) {
 			Meteor.call('addOption', optArr[i].value, (err, res) => {
-				options.concat(res);
+				console.log(res);
+				options.push(res);
 				console.log(options);
 				if(i === optArr.length - 1) {
 					Meteor.call('addQuestion', questionTitle, options, (err, res) => {

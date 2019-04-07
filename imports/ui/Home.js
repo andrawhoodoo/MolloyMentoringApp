@@ -39,6 +39,19 @@ export default class Home extends React.Component {
 			<h1 className="welcome-name text-dark mb-4">Welcome {this.state.name.first}!</h1>
 		);
 	}
+	findUser(userId) {
+		Meteor.subscribe('getName');
+		return Profiles.findOne({_id: userId}).name.first;
+	}
+	renderNotifications() {
+		return this.state.notifications.map(notifications => {
+			return (
+			<p>Congratulations, You Have Matched With {this.findUser(notification.data)}!</p>
+			)
+		}
+			
+						   		
+	}
     render() {
         return (
             <div className="full-page">
@@ -47,9 +60,29 @@ export default class Home extends React.Component {
 					<div className="px-3">
 						{this.renderWelcome()}
 					</div>
+
+
 					<div className="notifications bg-dark text-white p-3 mb-4">
-						<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications.length} new notifications!</h4>
+						<div class="accordion" id="accordionExample">
+						 <div class="card">
+						  <div class="card-header" id="headingOne">
+						 	 <h2 class="mb-0">
+						    	<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications.length} new notifications!</h4>
+						    	</button>
+						  	</h2>
+						 </div>
+
+						 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						   <div class="card-body">
+						   		{this.renderNotifications()}
+						       
+						   </div>
+						 </div>
+					  </div>
 					</div>
+
+
 					<ActiveGroups />
 					<UserCreatedGroups />
 					<div className="text-center container py-5">

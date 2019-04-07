@@ -35,25 +35,48 @@ export default class CreateGroup extends React.Component {
 		});
 	}
 	render() {
-		return (
-			<div>
-				<NavBar />
-				<h1 className='bg-dark text-white font-italic'>Group Creation Center</h1>
-				<div className="container mb-3">
-					<form>
-						<ul className="list-unstyled">
-							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Name</span></div><input className="form-control" type="text" ref="groupName" /></div></li>
-			
-							<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Description</span></div><input className="form-control" type="text" ref="groupDescription" placeholder="(optional)" /></div></li>
-						</ul>
-					</form>
-					<div className="bg-dark text-white">
-						<CreateSurvey submitSurvey={this.submitSurvey.bind(this)} />
-						<button className="btn btn-block molloy-button" onClick={this.submitGroup.bind(this)}>Create Your New Group</button>
+		if(this.state.surveyId) {
+			return (
+				<div>
+					<NavBar />
+					<h1 className='bg-dark text-white font-italic'>Group Creation Center</h1>
+					<div className="container mb-3">
+						<form>
+							<ul className="list-unstyled">
+								<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Name</span></div><input className="form-control" type="text" ref="groupName" /></div></li>
+
+								<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Description</span></div><input className="form-control" type="text" ref="groupDescription" placeholder="(optional)" /></div></li>
+							</ul>
+						</form>
+						<div className="bg-dark text-white">
+							<h4 className="text-success">Survey Submitted!</h4>
+							<button className="btn btn-block molloy-button" onClick={this.submitGroup.bind(this)}>Create Your New Group</button>
+						</div>
 					</div>
+					<Footer />
 				</div>
-				<Footer />
-			</div>
-		);
+			);
+		}
+		else {
+			return (
+				<div>
+					<NavBar />
+					<h1 className='bg-dark text-white font-italic'>Group Creation Center</h1>
+					<div className="container mb-3">
+						<form>
+							<ul className="list-unstyled">
+								<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Name</span></div><input className="form-control" type="text" ref="groupName" /></div></li>
+
+								<li><div className="input-group"><div className="input-group-prepend"><span className="input-group-text">Group Description</span></div><input className="form-control" type="text" ref="groupDescription" placeholder="(optional)" /></div></li>
+							</ul>
+						</form>
+						<div className="bg-dark text-white">
+							<CreateSurvey submitSurvey={this.submitSurvey.bind(this)} />
+						</div>
+					</div>
+					<Footer />
+				</div>
+			);
+		}
 	}
 }

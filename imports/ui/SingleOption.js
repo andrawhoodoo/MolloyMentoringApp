@@ -10,7 +10,7 @@ export default class SingleOption extends React.Component {
 	  	return (
 			<div>
 				<input type="text" placeholder="Enter Your Option" defaultValue={this.props.value} onChange={this.props.handler}/>
-				<button onClick={this.delete.bind(this)}>Remove Button</button>
+				<button className="btn btn-sm molloy-button" onClick={this.delete.bind(this)}>Remove Option</button>
 			</div>
 		)
 	}

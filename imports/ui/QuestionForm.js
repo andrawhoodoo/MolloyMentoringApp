@@ -40,13 +40,16 @@ export default class QuestionForm extends React.Component {
 		let qTitle = this.refs.qTitle.value.trim();
 		let filteredArray = this.state.OptionArray.filter(option => option.active === true);
 		this.props.submitfunc(filteredArray, qTitle);
+		this.setState({OptionArray: [{value: "", active: true}, {value: "", active: true}]});
+		this.setState({Error: ''});
+		this.refs.qTitle.value = '';
 	}
 	render() {
 		return (
 		  <div className="container">
 			<div className="card mb-4">
 			  <div className="card-header">
-				<h3 className="text-dark">Create Your Survey</h3>
+				<h3 className="text-dark">Create Your Questions</h3>
 			  </div>
 				  <div className="card-body">
 					<input ref="qTitle" type="text" placeholder="Enter Your Question"/>

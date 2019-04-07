@@ -22,12 +22,15 @@ export default class CreateSurvey extends React.Component {
 		e.preventDefault();
 		this.props.submitSurvey(this.state.surveyInfo);
 	}
+	submitQuestion() {
+		
+	}
     render() {
         return (
         	<div>
               	<div className="container">
                   	<form className="new-survey">
-				  		<QuestionForm />
+				  		<QuestionForm submitfunc={this.submitQuestion.bind(this)}/>
 						<button onClick={this.handleSubmit.bind(this)}>Submit Your Survey!</button>					
                   	</form>
               	</div>

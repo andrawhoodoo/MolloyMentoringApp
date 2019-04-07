@@ -12,9 +12,8 @@ if(Meteor.isServer){
 }
 
 Meteor.methods({
-  	'addSurvey': function(title, questionIdArr) {
+  	'addSurvey': function(questionIdArr) {
 		const id = Surveys.insert({
-			title: title,
 			author: this.userId,
 			questions: questionIdArr
 		});

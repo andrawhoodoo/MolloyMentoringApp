@@ -15,9 +15,9 @@ Meteor.methods({
     const id = Questions.insert({
       text: text,
       options: options,
-      limit: 1 //For future implementation: how many selections per question
+      limit: limit || 1 //For future implementation: how many selections per question
     });
-	  console.log(options);
+	console.log(options);
 	return id;
   }
 });

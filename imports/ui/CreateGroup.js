@@ -19,7 +19,6 @@ export default class CreateGroup extends React.Component {
 	componentDidMount() {	
 	}
 	submitGroup(e) {
-		e.preventDefault();
 		const groupName = this.refs.groupName.value.trim()
 		const description = this.refs.groupDescription.value.trim()
 		if(this.state.surveyId) {
@@ -30,28 +29,9 @@ export default class CreateGroup extends React.Component {
 			throw new Meteor.Error('must first submit a survey before creating a group!');
 		}
 	}
-	submitSurvey(surveyInfo) {
-		const myArr = [];
-		const qArr = [];
-		Meteor.call('addOption', 'This is option 1', (err, result) => {
-			myArr.push(result);
-			console.log(myArr)
-			Meteor.call('addOption', 'This is option 2', (err, result) => {
-				myArr.push(result);
-				console.log(myArr);
-				Meteor.call('addQuestion', 'This is my question', myArr, 'limit', (err, result) => {
-					qArr.push(result);	
-					console.log(qArr);
-					Meteor.call('addQuestion', 'Here is another question', myArr, 'limit', (err, result) => {
-						qArr.push(result);
-						console.log(qArr);
-						Meteor.call('addSurvey', 'MySurvey', qArr, (err, result) => {
-							this.setState({surveyId: result});
-							console.log(this.state)
-						});
-					});
-				});
-			});
+	submitSurvey(questions) {
+		Meteor.call('addSurvey', questions, (err,res) => {
+			this.setState({surveyId: res});
 		});
 	}
 	render() {

@@ -23,7 +23,8 @@ export default class QuestionForm extends React.Component {
 		this.setState({Error: ''});
 	}
 	deleteOption(index) {
-	  if(index > 1) {
+	  let activeOptions = this.state.OptionArray.filter(option => option.active === true);
+	  if(activeOptions.length > 2) {
 		  this.state.OptionArray[index].active = false;
 		  this.setState({OptionArray: this.state.OptionArray});
 	  }
@@ -36,7 +37,9 @@ export default class QuestionForm extends React.Component {
 	  this.setState({OptionArray: this.state.OptionArray});
 	}
 	submit(e) {
-		this.props.submitfunc();
+		let qTitle = this.refs.qTitle.value.trim();
+		let filteredArray = this.state.OptionArray.filter(option => option.active === true);
+		this.props.submitfunc(filteredArray, qTitle);
 	}
 	render() {
 		return (
@@ -46,7 +49,7 @@ export default class QuestionForm extends React.Component {
 				<h3 className="text-dark">Create Your Survey</h3>
 			  </div>
 				  <div className="card-body">
-					<input type="text" placeholder="Enter Your Question"/>
+					<input ref="qTitle" type="text" placeholder="Enter Your Question"/>
 					<div>
 					  <ul>
 						{this.renderActiveOptions()}
@@ -60,7 +63,7 @@ export default class QuestionForm extends React.Component {
 					</div>
 				  </div>
 					<button className="hover" type="button" onClick={this.addOption.bind(this) }>Add New Option</button>
-					<button className="hover"  type="button" onClick={ this.submit.bind(this) }>Add New Question</button>
+					<button className="hover"  type="button" onClick={ this.submit.bind(this) }>Add Question</button>
 			  </div>
 		  </div>
 		)

@@ -46,11 +46,9 @@ export default class Home extends React.Component {
 	renderNotifications() {
 		return this.state.notifications.map(notifications => {
 			return (
-			<p>Congratulations, You Have Matched With {this.findUser(notification.data)}!</p>
+				<p>Congratulations, You Have Matched With {this.findUser(notification.data)}!</p>
 			)
-		}
-			
-						   		
+		});			   		
 	}
     render() {
         return (
@@ -62,26 +60,23 @@ export default class Home extends React.Component {
 					</div>
 
 
-					<div className="notifications bg-dark text-white p-3 mb-4">
-						<div class="accordion" id="accordionExample">
-						 <div class="card">
-						  <div class="card-header" id="headingOne">
-						 	 <h2 class="mb-0">
-						    	<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					<div className="accordion" id="accordionNotifications">
+						<div className="card bg-dark text-white">
+						  <div className="card-header" id="headingOne">
+						 	 <h2 className="mb-0">
+						    	<button className="btn btn-dark btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 									<h4><i className="far fa-bell"></i>&nbsp; You have {this.state.notifications.length} new notifications!</h4>
 						    	</button>
 						  	</h2>
 						 </div>
 
-						 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-						   <div class="card-body">
+						 <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionNotifications">
+						   <div className="card-body">
 						   		{this.renderNotifications()}
-						       
 						   </div>
 						 </div>
 					  </div>
 					</div>
-
 
 					<ActiveGroups />
 					<UserCreatedGroups />

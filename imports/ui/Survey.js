@@ -21,7 +21,6 @@ export default class Survey extends React.Component {
 			const mySurvey = Surveys.findOne({_id: this.props.surveyId});
 			this.setState(mySurvey ? {survey: mySurvey} : {survey: ''});
 			this.setState(mySurvey ? {numQuestions: mySurvey.questions.length} : {numQuestions: 0});
-			console.log(this.state.numQuestions);
 		});
 		
 	}
@@ -54,7 +53,6 @@ export default class Survey extends React.Component {
 	renderOptions(question) {
 		const questionId = question._id;
 		return question.options.map(optionId => {
-			console.log(optionId)
 			Meteor.subscribe('optionsData');
 			const myOption = Options.findOne({_id: optionId});
 			if(myOption) {
@@ -72,20 +70,17 @@ export default class Survey extends React.Component {
 		let roleInputs = target.role.value;
 		let groupId = this.props.groupId;
 		for(let i=1; i<this.state.numQuestions+1; i++) {
-			console.log('in for loop');
 			let qOrder = "q" + i;
 			let questionId = document.getElementsByName(qOrder)[0].getAttribute("questionid");
 			let radios = document.getElementsByName(questionId);
 			let selectionId = '';
 			for(let i=0; i<radios.length; i++) {
 				if(radios[i].checked) {
-					alert(radios[i].value)
 					selectionId = radios[i].value
 				}
 			}
 			// Write data to Answers DB
 			Meteor.call('addAnswer', this.props.surveyId, questionId, selectionId);
-			console.log('answer added');
 		}
 		// Feedback for testing
 		// Write data to Groups DB

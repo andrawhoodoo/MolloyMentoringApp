@@ -1,29 +1,49 @@
 import { Meteor } from 'meteor/meteor';
-import { Groups } from '../api/groups';
-import { Scores } from '../api/scores';
 import { MentorPairs } from '../api/mentorpairs';
+import { Answers } from '../api/answers';
+import { Scores } from '../api/scores';
+import { Groups } from '../api/groups';
 
+Meteor.subscribe('answersData');
 Meteor.subscribe('scoresData');
 Meteor.subscribe('groupsData');
 
 
 export const pair = groupId => {
-  const myGroup = Groups.findOne({_id: groupId});
-  const surveyId = myGroup.surveyId;
-  const ara = Scores.find({surveyId: surveyId}).fetch();
-  let addToSepArray = (pull,pullFor,arr) => {
-    for(let i = 0; i<pull.length; i++) {
-      if(arr.indexOf(pull[i][pullFor]) == -1){
-        arr.push(pull[i][pullFor]);
+
+const currentGroup = Groups.findOne({_id:groupId});
+    let currentSurveyId = currentGroup.surveyId;
+    let mentorsPool = currentGroup.mentors_pool;
+    let menteesPool = currentGroup.mentees_pool;
+    let ara = [];
+
+
+let scoreAnswers = (array1, array2) => {
+  let currentScore = 0;
+  for(let i=0; i < array1.length; i++) {
+    if(array1[i].selections === array2[i].selections) {
+      currentScore = currentScore + 1;
+    }
+  }
+  // Convert score to decimal from 0-1
+  currentScore = (currentScore/array1.length);
+  return currentScore;
+};
+
+let createAra = () => {
+  for(let i = 0; i < mentorsPool.length; i++) {
+     const mentorAnswers = Answers.find({userId: mentorsPool[i], surveyId: currentSurveyId}).fetch();
+      for(let j = 0; j < menteesPool.length; j++) {
+          const menteeAnswers = Answers.find({userId: menteesPool[j], surveyId: currentSurveyId}).fetch();
+          ara.push({mentor: mentorsPool[i], mentee: menteesPool[j], score: scoreAnswers(mentorAnswers, menteeAnswers)});
       }
     }
-  };
-  
-  const mentees = [];
-  const mentors = [];
-  addToSepArray(ara,"mentee",mentees);
-  addToSepArray(ara,"mentor",mentors);
+};
 
+createAra();
+  
+  const mentees = menteesPool;
+  const mentors = mentorsPool;
   let ara1 = new Map();
 
   let fillMap = (arr,map) =>{

@@ -6,6 +6,7 @@ import { Surveys } from '../api/surveys';
 import { Questions } from '../api/questions';
 import { Options } from '../api/options';
 import { Answers } from '../api/answers';
+import { browserHistory } from '../routes/routes';
 
 export default class Survey extends React.Component {
 	constructor(props) {
@@ -85,10 +86,24 @@ export default class Survey extends React.Component {
 		// Feedback for testing
 		// Write data to Groups DB
 		if (roleInputs === "Mentor") {
-			Meteor.call('addToMentorsPool', groupId);
+			Meteor.call('addToMentorsPool', groupId, (err, res) => {
+				if(err) {
+					return err.message;
+				}
+				else {
+					browserHistory.replace('/home');
+				}
+			});
 		}
 		else if (roleInputs === "Mentee") {
-			Meteor.call('addToMenteesPool', groupId);
+			Meteor.call('addToMenteesPool', groupId, (err, res) => {
+				if(err) {
+					return err.message;
+				}
+				else {
+					browserHistory.replace('/home');
+				}
+			});
 		}
 		else {
 			return 'error';

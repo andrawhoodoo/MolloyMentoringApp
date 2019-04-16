@@ -18,7 +18,9 @@ Meteor.methods({
 	  surveyId: surveyId,
       questionId: questionid
 	}, {
-      selections: selections
-    });
+		$set: {selections: selections}
+    }, {
+		upsert: true
+	});
   }
 });

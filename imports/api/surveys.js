@@ -17,7 +17,6 @@ Meteor.methods({
 			author: this.userId,
 			questions: questionIdArr
 		});
-		console.log(questionIdArr);
 		return id
   	}
 });

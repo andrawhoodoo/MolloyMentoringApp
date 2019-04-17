@@ -16,7 +16,10 @@ import NotFound from "../ui/NotFound";
 
 export const browserHistory = createBrowserHistory();
 
+//Array of pages accessible to all users
 const unauthenticatedPages = ["/", "/signup"];
+
+//Array of pages accessible only to users who are logged in
 const authenticatedPages = [
   "/home",
   "/profile",
@@ -27,6 +30,11 @@ const authenticatedPages = [
   "/group-search"
 ];
 
+/**
+ * Determines if a currently logged in user should be able to see the current public page or component
+ * @param {React Component} Component - the current component the user is attempting to view
+ * returns the appropriate React Component based on authentication.
+ */
 const onEnterPublicPage = Component => {
   if (Meteor.userId()) {
     return <Redirect to="/home" />;
@@ -35,6 +43,11 @@ const onEnterPublicPage = Component => {
   }
 };
 
+/**
+ * Determines if a user should be able to see the current private page or component
+ * @param {React Component} Component - the current component the user is attempting to view
+ * returns the appropriate React Component based on authentication.
+ */
 const onEnterPrivatePage = Component => {
   if (!Meteor.userId()) {
     return <Redirect to="/" />;
@@ -42,6 +55,7 @@ const onEnterPrivatePage = Component => {
     return <Component />;
   }
 };
+
 
 export const onAuthChange = isAuthenticated => {
   const pathname = browserHistory.location.pathname;

@@ -21,7 +21,11 @@ export const pair = groupId => {
 	let scoreAnswers = (array1, array2) => {
 	  let currentScore = 0;
 	  for(let i=0; i < array1.length; i++) {
-		if(array1[i].selections === array2[i].selections) {
+		let currentQuestionId = array1[i].questionId;
+		const qComparable = array2.find(question => {
+			return (question.questionId === currentQuestionId);
+		})
+		if(array1[i].selections === qComparable.selections) {
 		  currentScore = currentScore + 1;
 		}
 	  }

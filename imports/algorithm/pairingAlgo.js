@@ -25,7 +25,7 @@ export const pair = groupId => {
 		const qComparable = array2.find(question => {
 			return (question.questionId === currentQuestionId);
 		})
-		if(array1[i].selections === qComparable.selections) {
+		if(qComparable && array1[i].selections === qComparable.selections) {
 		  currentScore = currentScore + 1;
 		}
 	  }
@@ -45,7 +45,7 @@ export const pair = groupId => {
 	};
 
   createAra();
-  
+
   const mentees = menteesPool;
   const mentors = mentorsPool;
   let ara1 = new Map();
@@ -61,7 +61,7 @@ export const pair = groupId => {
   let getScore = (map, mentor, mentee) =>{
     return map.get(mentor+mentee)
   };
-  
+
   let subArray = (index, arr) => {
     let acc = [];
     for(let i = 0; i < arr.length; i++){
